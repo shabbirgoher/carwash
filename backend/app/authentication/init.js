@@ -2,32 +2,42 @@ import passport from 'passport';
 import FacebookStrategy from 'passport-facebook';
 import GoogleStrategy from 'passport-google-oauth20';
 // Import Facebook and Google OAuth apps configs
-import { facebook, google } from './config';
+import { facebook, google,  jwtOptions} from './config';
+import passportJwt from 'passport-jwt';
+import users from './userService';
 
 
-const transformFacebookProfile = (profile, accessToken) => ({
+const transformFacebookProfile = (profile) => ({
     name: profile.name,
-    avatar: profile.picture.data.url,
-    accessToken: accessToken
+    avatar: profile.picture.data.url
   });
   
   // Transform Google profile into user object
-  const transformGoogleProfile = function(profile, accessToken) {
+  const transformGoogleProfile = function(profile) {
     console.log(profile);  
     return{
         name: profile.name,
-        avatar: profile.picture.data.url,
-        accessToken: accessToken
+        avatar: profile.picture.data.url
     }
   }
-  
+
+  passport.use(new passportJwt.Strategy(jwtOptions, (payload, done) => {
+    const user = users.getUserById(parseInt(payload.sub));
+    if (user) {
+        return done(null, user, payload);
+    }
+    return done();
+  }));
+
   // Register Facebook Passport strategy
   passport.use(new FacebookStrategy(facebook,
-    // Gets called when user authorizes access to their profile
-    async (accessToken, refreshToken, profile, done)
-      // Return done callback and pass transformed user object
-      => done(null, transformGoogleProfile(profile._json, accessToken))
-      //=> done(null, transformFacebookProfile(profile._json, accessToken))
+    function (accessToken, refreshToken, profile, done){
+      let user = users.getUserByExternalId('facebook', profile.id);
+      if (!user) {
+        user = users.createUser(transformFacebookProfile(profile._json), 'facebook', profile.id);
+      }
+      return done(null, user);
+    }
   ));
   
   // Register Google Passport strategy

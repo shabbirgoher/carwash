@@ -4,6 +4,7 @@ import express from 'express';
 const app = express();
 
 require('./authentication').init(app);
+require('./secureModule').init(app);
 
 // Launch the server on the port 3000
 const server = app.listen(3000, () => {
