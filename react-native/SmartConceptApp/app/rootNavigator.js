@@ -1,21 +1,33 @@
 import React from 'react';
-import { StatusBar, Platform } from 'react-native';
+import { StatusBar, Platform, StyleSheet, Text } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import { FontAwesome } from "react-native-vector-icons";
 
 import Home from './components/home'
-import {Login1} from './components/login'
+import Login from './components/login'
 
 const headerStyle = {
   marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
 };
 
+const styles = StyleSheet.create({
+  text: {
+    textAlign: 'center',
+    color: '#333'
+  }
+});
+
 export const SignedOut = StackNavigator({
   SignUp: {
-    screen: Login1,
+    screen: Login,
     navigationOptions: {
-      title: "Sign In",
-      headerStyle
+      title: <Text style={styles.text}>Sign In</Text>,
+      headerStyle,
+      headerTitleStyle:{
+        alignSelf:'center',
+        textAlign: 'center',
+        width: '100%'
+      }
     }
   }
 });
@@ -27,7 +39,7 @@ export const SignedIn = TabNavigator(
       navigationOptions: {
         tabBarLabel: "Home",
         tabBarIcon: ({ tintColor }) =>
-          <FontAwesome name="home" size={30} color={tintColor} />
+          <FontAwesome name="home" size={30} color={tintColor} />            
       }
     }
   },
@@ -63,3 +75,4 @@ export const createRootNavigator = (signedIn = false) => {
     }
   );
 };
+
