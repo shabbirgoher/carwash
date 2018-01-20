@@ -1,7 +1,10 @@
 import express from 'express';
+import mongoose from 'mongoose';
 
 // Initialize http server
 const app = express();
+
+mongoose.connect('mongodb://localhost:27017/smartconcept');
 
 require('./authentication').init(app);
 require('./secureModule').init(app);

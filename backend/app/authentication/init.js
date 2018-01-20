@@ -6,13 +6,12 @@ import { facebook, google,  jwtOptions} from './config';
 import passportJwt from 'passport-jwt';
 import users from './userService';
 
-
 const transformFacebookProfile = (profile) => ({
-    name: profile.name,
-    avatar: profile.picture.data.url
+    facebookId: profile.id,
+    userName: profile.name,
+    email: profile.email
   });
   
-  // Transform Google profile into user object
   const transformGoogleProfile = function(profile) {
     console.log(profile);  
     return{
@@ -34,7 +33,7 @@ const transformFacebookProfile = (profile) => ({
     function (accessToken, refreshToken, profile, done){
       let user = users.getUserByExternalId('facebook', profile.id);
       if (!user) {
-        user = users.createUser(transformFacebookProfile(profile._json), 'facebook', profile.id);
+        user = users.createUser(transformFacebookProfile(profile._json));
       }
       return done(null, user);
     }
