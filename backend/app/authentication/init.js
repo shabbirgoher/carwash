@@ -21,7 +21,7 @@ const transformFacebookProfile = (profile) => ({
   }
 
   passport.use(new passportJwt.Strategy(jwtOptions, (payload, done) => {
-    const user = users.getUserById(parseInt(payload.sub));
+    const user = users.getUserOrTempUserById(payload.sub);
     if (user) {
         return done(null, user, payload);
     }

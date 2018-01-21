@@ -3,21 +3,13 @@ const uuidv1 = require('uuid/v1');
 
 import User from './../models/user';
 import TempUser from './../models/incompeleteUser'
-exports.getUserById = function(userId){
-    // if(userId == 1){
-    //     return {
-    //         id: 1,
-    //         name: 'shabbir'
-    //     }
-    // }
+
+exports.getUserOrTempUserById = function(userId){
+    return User.findOne({'userId': userId}) || TempUser.findOne({'userId': userId});
 }
 
 exports.getUserByExternalId = function(strategy, profileId){
-        console.debug("No user availble ");
-        // return{
-        //     name: "shabbir",
-        //     id: 1
-        // }
+    return User.findOne({strategy: profileId}) || TempUser.findOne({strategy: profileId});
 }
 
 exports.createUser = function(user){

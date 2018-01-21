@@ -7,8 +7,7 @@ var incompleteUser = new Schema({
         required: true
     },
     email: {
-        type: String,
-        unique: true,
+        type: String
     },
     userName: String,
     facebookId: {

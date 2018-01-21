@@ -5,8 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "local": "node_modules/nodemon/bin/nodemon.js --config config/config.local.json -- node_modules/babel-cli/bin/babel-node.js app/server.js",
-    "localaz": "node_modules/nodemon/bin/nodemon.js --config config/config.localaz.json -- node_modules/babel-cli/bin/babel-node.js app/server.js"
+    "start": "node index.js",
+    "local": "node_modules/nodemon/bin/nodemon.js --config config/config.local.json -- node_modules/babel-cli/bin/babel-node.js index.js",
+    "localaz": "node_modules/nodemon/bin/nodemon.js --config config/config.localaz.json -- node_modules/babel-cli/bin/babel-node.js index.js",
+    "testaz": "node_modules/nodemon/bin/nodemon.js --config config/config.testaz.json -- node_modules/babel-cli/bin/babel-node.js index.js",
+    "android": "node_modules/nodemon/bin/nodemon.js --config config/config.android.json -- node_modules/babel-cli/bin/babel-node.js index.js",
+    "compile": "./node_modules/.bin/babel ./app ./node_modules -d ./compiled"
   },
   "author": "",
   "license": "ISC",
@@ -26,5 +30,15 @@
     "passport-google-oauth20": "^1.0.0",
     "passport-jwt": "^3.0.1",
     "uuid": "^3.2.1"
-  }
+  },
+  "bundledDependencies": [
+    "lodash",
+    "express",
+    "mongoose",
+    "passport",
+    "passport-facebook",
+    "passport-google-oauth20",
+    "passport-jwt",
+    "uuid"
+  ]
 }
