@@ -7,7 +7,7 @@ import passportJwt from 'passport-jwt';
 import users from './userService';
 
 const transformFacebookProfile = (profile) => ({
-    facebookId: profile.id,
+    facebook: profile.id,
     userName: profile.name,
     email: profile.email
   });
@@ -20,22 +20,29 @@ const transformFacebookProfile = (profile) => ({
     }
   }
 
-  passport.use(new passportJwt.Strategy(jwtOptions, (payload, done) => {
-    const user = users.getUserOrTempUserById(payload.sub);
-    if (user) {
-        return done(null, user, payload);
-    }
-    return done();
+  passport.use(new passportJwt.Strategy(jwtOptions, 
+    function (payload, done){
+      users.getUserOrTempUserById(payload.sub, function(user){
+        if (user) {
+          return done(null, user, payload);
+        }
+        return done();  
+      });
   }));
 
   // Register Facebook Passport strategy
   passport.use(new FacebookStrategy(facebook,
     function (accessToken, refreshToken, profile, done){
-      let user = users.getUserByExternalId('facebook', profile.id);
-      if (!user) {
-        user = users.createUser(transformFacebookProfile(profile._json));
-      }
-      return done(null, user);
+      users.getUserByExternalId('facebook', profile.id, function(user){
+        if (!user) {
+          users.createUser(transformFacebookProfile(profile._json), function(user){
+            return done(null, user);
+          });
+        }
+        else{
+          return done(null, user);
+        }
+      });
     }
   ));
   

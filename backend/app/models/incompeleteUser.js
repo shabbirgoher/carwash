@@ -10,11 +10,11 @@ var incompleteUser = new Schema({
         type: String
     },
     userName: String,
-    facebookId: {
+    facebook: {
         type: String,
         unique: true
     },
-    googleId: {
+    google: {
         type: String,
         unique: true
     }

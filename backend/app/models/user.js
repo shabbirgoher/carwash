@@ -12,11 +12,11 @@ var user = new Schema({
         required: true
     },
     userName: String,
-    facebookId: {
+    facebook: {
         type: String,
         unique: true
     },
-    googleId: {
+    google: {
         type: String,
         unique: true
     },

@@ -1,6 +1,6 @@
 import passportJwt from 'passport-jwt';
 
-const HOST_NAME = process.env.hostname || 'http://localhost:3000'
+const HOST_NAME = process.env.HOST_NAME || 'http://localhost:3000'
 export const facebook = {
     clientID: '169403277001949',
     clientSecret: '176842234bed54a932976ea984fe646b',
