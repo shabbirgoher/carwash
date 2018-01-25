@@ -4,12 +4,13 @@ import {
     StyleSheet,
     Text
 } from 'react-native';
+import User from './user'
 
-export default class Home extends Component {
+export default class AppointmentHistory extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>Welcome</Text>
+                <Text>Nothing booked yet</Text>
                 <User/>
             </View>
         )

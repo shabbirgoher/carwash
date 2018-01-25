@@ -5,6 +5,9 @@ import { FontAwesome } from "react-native-vector-icons";
 
 import Home from './components/home'
 import Login from './components/login'
+import SignUp from './components/signUp'
+import AppointmentHistory from './components/history'
+import CompeleteProfile from './components/completeProfile'
 
 const headerStyle = {
   marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
@@ -18,10 +21,22 @@ const styles = StyleSheet.create({
 });
 
 export const SignedOut = StackNavigator({
-  SignUp: {
+  SignIn: {
     screen: Login,
     navigationOptions: {
-      title: <Text style={styles.text}>Sign In</Text>,
+      headerTitle: "Sign In",
+      headerStyle,
+      headerTitleStyle:{
+        alignSelf:'center',
+        textAlign: 'center',
+        width: '100%'
+      }
+    }
+  },
+  SignUp: {
+    screen: SignUp,
+    navigationOptions: {
+      headerTitle: "Sign Up",
       headerStyle,
       headerTitleStyle:{
         alignSelf:'center',
@@ -34,10 +49,11 @@ export const SignedOut = StackNavigator({
 
 export const SignedIn = TabNavigator(
   {
-    Home: {
-      screen: Home,
+    CompeleteProfile: {
+      screen: CompeleteProfile,
       navigationOptions: {
-        tabBarLabel: "Home",
+        
+        tabBarLabel: "Complete Your Profile",
         tabBarIcon: ({ tintColor }) =>
           <FontAwesome name="home" size={30} color={tintColor} />            
       }
@@ -51,6 +67,8 @@ export const SignedIn = TabNavigator(
     }
   }
 );
+
+
 
 export const createRootNavigator = (signedIn = false) => {
   return StackNavigator(
@@ -75,4 +93,7 @@ export const createRootNavigator = (signedIn = false) => {
     }
   );
 };
+
+//initialRouteName: signedIn ? "SignedIn" : "SignedOut"
+
 

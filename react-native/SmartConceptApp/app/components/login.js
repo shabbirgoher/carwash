@@ -25,12 +25,18 @@ export default class Login extends Component {
     };
 
     handleOpenURL = ({ url }) => {
-        const [, jwtToken] = url.match(/token=([^#]+)/);
-        setJWT(jwtToken);
+        const [, jwtToken, missingKeys] = url.match(/token=([^#]+)&missing=([^#]+)/);
         if (Platform.OS === 'ios') {
             SafariView.dismiss();
         }
-        this.props.navigation.navigate('SignedIn');
+        console.debug("missingkeys::"+missingKeys);
+        if(missingKeys){
+            this.props.navigation.navigate('SignUp', {jwtToken: jwtToken});
+        }
+        else{
+            setJWT(jwtToken);            
+            this.props.navigation.navigate('SignedIn');  
+        }
     };
 
     loginWithFacebook = () => this.openURL('http://10.0.2.2:3000/auth/facebook');

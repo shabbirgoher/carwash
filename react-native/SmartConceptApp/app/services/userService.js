@@ -33,3 +33,7 @@ async function setUser(user){
 async function getUser(){
     return await AsyncStorage.getItem(USER_KEY);
 }
+
+export async function getIncompleteProfile(){
+    return true;
+}
