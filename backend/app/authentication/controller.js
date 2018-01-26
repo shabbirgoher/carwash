@@ -25,14 +25,11 @@ exports.authorize = function(req, res, next){
 }
 
 exports.signUp = function(req, res, next){
-    console.log("inside signUp::"+req.body);
     passport.authenticate(
         ['tempJwt'], 
         {session: false}, 
         function(err, user, info){
-            console.log("user::"+user);           
-            console.log("error::"+err);           
-            const newUser = {...user, ...req.body};
+            const newUser = {...user._doc, ...req.body};
             const userSchema = new User(newUser);            
             userSchema.userId = uuidv1();            
             const validationErrors = userSchema.validateSync();

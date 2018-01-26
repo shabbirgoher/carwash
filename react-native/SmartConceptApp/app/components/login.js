@@ -8,6 +8,7 @@ import {
     Linking
 } from 'react-native';
 import SafariView from 'react-native-safari-view';
+
 import { setJWT } from './../services/tokenService'
 
 export default class Login extends Component {
@@ -24,8 +25,22 @@ export default class Login extends Component {
         Linking.removeEventListener('url', this.handleOpenURL);
     };
 
+    getUrlParams(search) {
+        let hashes = search.slice(search.indexOf('?') + 1).split('&')
+        let params = {}
+        hashes.map(hash => {
+            let [key, val] = hash.split('=')
+            params[key] = decodeURIComponent(val)
+        })
+    
+        return params
+    }
+    
     handleOpenURL = ({ url }) => {
-        const [, jwtToken, missingKeys] = url.match(/token=([^#]+)&missing=([^#]+)/);
+        console.log(url);
+        const params = this.getUrlParams(url);
+        const jwtToken = params['token'] ? params['token'].split('#')[0] : undefined;
+        const missingKeys = params['missing'] ? params['missing'].split('#')[0] : undefined;
         if (Platform.OS === 'ios') {
             SafariView.dismiss();
         }
