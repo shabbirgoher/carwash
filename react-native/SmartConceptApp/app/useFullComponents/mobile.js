@@ -36,7 +36,7 @@ export default class MobileNumber extends Component{
             });
         }
         
-        if(this.props.hasError) this.props.hasError(error);        
+        if(this.props.hasError) this.props.hasError(error, this.state.mobileNumber); 
     }
     render(){
         return (

@@ -11,6 +11,11 @@ var user = new Schema({
         unique: true,
         required: true
     },
+    mobileNumber: {
+        type: Number,
+        unique: true,
+        required: true
+    },
     userName: String,
     facebook: {
         type: String,

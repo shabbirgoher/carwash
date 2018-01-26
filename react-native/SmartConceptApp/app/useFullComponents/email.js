@@ -37,7 +37,7 @@ export default class Email extends Component{
             });
             error= false;
         }
-        if(this.props.hasError) this.props.hasError(error);
+        if(this.props.hasError) this.props.hasError(error, this.state.emailAddr);
     }
 
     render(){

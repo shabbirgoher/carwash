@@ -9,6 +9,9 @@ var incompleteUser = new Schema({
     email: {
         type: String
     },
+    mobileNumber: {
+        type: Number
+    },
     userName: String,
     facebook: {
         type: String,

@@ -29,7 +29,23 @@ export async function isSignedIn() {
     catch (error) {
         console.log('AsyncStorage error: ' + error.message);
     }
+}
 
+export function onSignUp(token, object, callback){
+    return fetch(
+        'http://10.0.2.2:3000/auth/signUp', 
+        {
+            method: 'post',
+            headers: {
+                'Authorization': token,
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(object),
+        }
+    ).then((response) => response.json())
+    .then(function(responseJson){
+        return responseJson;
+    });
 }
 
 export const onSignIn = () => AsyncStorage.setItem(JWT_KEY, "true");

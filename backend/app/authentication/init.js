@@ -20,9 +20,19 @@ const transformFacebookProfile = (profile) => ({
     }
   }
 
-  passport.use(new passportJwt.Strategy(jwtOptions, 
+  passport.use('jwt', new passportJwt.Strategy(jwtOptions, 
     function (payload, done){
-      users.getUserOrTempUserById(payload.sub, function(user){
+      users.getUserById(payload.sub, function(user){
+        if (user) {
+          return done(null, user, payload);
+        }
+        return done();  
+      });
+  }));
+
+  passport.use('tempJwt', new passportJwt.Strategy(jwtOptions, 
+    function (payload, done){
+      users.getTempUserById(payload.sub, function(user){
         if (user) {
           return done(null, user, payload);
         }

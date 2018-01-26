@@ -1,9 +1,17 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import bodyParser from 'body-parser'
 
 // Initialize http server
 const app = express();
 
+app.use(bodyParser.json());
+
+app.use(function logErrors(err, req, res, next) {
+    console.error(err.stack);
+    res.status(500).send(rr.stack);
+  }
+);
 mongoose.connect(process.env.MONGODB_URI);
 
 require('./authentication').init(app);

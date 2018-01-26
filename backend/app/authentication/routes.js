@@ -14,4 +14,6 @@ module.exports = function (app){
     //     (req, res, next) => authController.authenticate('google', { failureRedirect: '/auth/facebook' }),
     //     (req, res, next) => authController.authorize()
     // );
+
+    app.post('/auth/signUp', authController.signUp)
 }

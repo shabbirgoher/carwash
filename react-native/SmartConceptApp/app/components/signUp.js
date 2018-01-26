@@ -3,34 +3,66 @@ import {
     StyleSheet,
     View,
 } from 'react-native';
-import { Card, Button } from "react-native-elements";
+import { Card, Button, FormValidationMessage } from "react-native-elements";
 
 import Email from './../useFullComponents/email';
 import MobileNumber from './../useFullComponents/mobile';
+import {onSignUp} from './../services/tokenService'
+import { setJWT } from './../services/tokenService'
 
 export default class SignUp extends Component{
     constructor(props){
         super(props);
         this.state = {
             emailError: true,
+            emailAddr: '',            
             mobileNumberError: true,
+            mobileNumber: '',
             jwtToken: this.props.navigation.state.params.jwtToken,
+            errorMessage: '',
+            isLoading: true
         };
     }
-
-    hasEmailError = (error) => {
+    componentDidMount(){
         this.setState({
-            emailError: error
+            isLoading: false
+        });
+    }
+    hasEmailError = (error, emailAddr) => {
+        this.setState({
+            emailError: error,
+            emailAddr: emailAddr
         });
     }
 
-    hasMobileNumberError = (error) => {
+    hasMobileNumberError = (error, mobileNumber) => {
         this.setState({
-            mobileNumberError: error
+            mobileNumberError: error,
+            mobileNumber: mobileNumber
         });
     }
     signUp = () => {
-        
+        this.setState({
+            isLoading: true
+        });
+        onSignUp(
+            this.state.jwtToken, 
+            {email: this.state.emailAddr, mobileNumber: this.state.mobileNumber}
+        ).then((response) => {
+            if(!response.token){
+                this.setState({
+                    errorMessage: 'Unabel to signup. Please try again.',
+                    isLoading: false
+                });
+            }
+            else{
+                setJWT(response.token);
+                this.setState({errorMessage: ''});
+                this.props.navigation.navigate('SignedIn');
+            }
+        }).catch(function(error){
+            console.error(error);
+        });
     }
     render(){
         return(
@@ -43,8 +75,9 @@ export default class SignUp extends Component{
                         backgroundColor="#03A9F4"
                         title="SIGN UP"
                         onPress={this.signUp}
-                        disabled= {this.state.emailError || this.state.mobileNumberError}
+                        disabled= {this.state.isLoading || this.state.emailError || this.state.mobileNumberError}
                     />
+                    <FormValidationMessage>{this.state.errorMessage}</FormValidationMessage>
                 </Card>
             </View>
         );

@@ -4,22 +4,14 @@ const uuidv1 = require('uuid/v1');
 import User from './../models/user';
 import TempUser from './../models/incompeleteUser'
 
-exports.getUserOrTempUserById = function(userId, callback){
+exports.getUserById = function(userId, callback){
     var query = {'userId': userId};
     User.findOne(query, function(err, user){
         if(err){
             console.log("Unable to fetch from DB");
             return callback()
         }
-        if(!user){
-            TempUser.findOne(query, function(err, user){
-                if(err){
-                    console.log("Unable to fetch from DB");
-                    return callback()
-                }
-                return callback(user);
-            });
-        }
+        
         return callback(user);
     });
 
@@ -29,6 +21,19 @@ exports.getUserOrTempUserById = function(userId, callback){
     //     console.error("unable to fetch user from DB" + err);
     // });
 }
+
+exports.getTempUserById = function(userId, callback){
+    var query = {'userId': userId};
+    TempUser.findOne(query, function(err, user){
+        if(err){
+            console.log("Unable to fetch from DB");
+            return callback()
+        }
+        
+        return callback(user);
+    });
+}
+
 async function getUserOrTempUserByIdAsync(userId){
     var user = await User.findOne({'userId': userId}).exec() || await TempUser.findOne({'userId': userId}).exec()
     return user;
