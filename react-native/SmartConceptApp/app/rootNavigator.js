@@ -1,13 +1,10 @@
 import React from 'react';
-import { StatusBar, Platform, StyleSheet, Text } from 'react-native';
-import { StackNavigator, TabNavigator } from 'react-navigation';
-import { FontAwesome } from "react-native-vector-icons";
+import { StatusBar, Platform, StyleSheet } from 'react-native';
+import { StackNavigator } from 'react-navigation';
 
 import Home from './components/home'
 import Login from './components/login'
 import SignUp from './components/signUp'
-import AppointmentHistory from './components/history'
-import CompeleteProfile from './components/completeProfile'
 
 const headerStyle = {
   marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
@@ -38,7 +35,7 @@ export const SignedOut = StackNavigator({
     navigationOptions: {
       headerTitle: "Sign Up",
       headerStyle,
-      headerTitleStyle:{
+      headerTitleStyle: {
         alignSelf:'center',
         textAlign: 'center',
         width: '100%'
@@ -47,28 +44,20 @@ export const SignedOut = StackNavigator({
   }
 });
 
-export const SignedIn = TabNavigator(
-  {
-    CompeleteProfile: {
-      screen: CompeleteProfile,
-      navigationOptions: {
-        
-        tabBarLabel: "Complete Your Profile",
-        tabBarIcon: ({ tintColor }) =>
-          <FontAwesome name="home" size={30} color={tintColor} />            
-      }
-    }
-  },
-  {
-    tabBarOptions: {
-      style: {
-        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
+export const SignedIn = StackNavigator({
+  Home: {
+    screen: Home,
+    navigationOptions: {
+      headerTitle: "Home",
+      headerStyle,
+      headerTitleStyle: {
+        alignSelf:'center',
+        textAlign: 'center',
+        width: '100%'
       }
     }
   }
-);
-
-
+});
 
 export const createRootNavigator = (signedIn = false) => {
   return StackNavigator(

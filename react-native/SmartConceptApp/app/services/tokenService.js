@@ -48,7 +48,4 @@ export function onSignUp(token, object, callback){
     });
 }
 
-export const onSignIn = () => AsyncStorage.setItem(JWT_KEY, "true");
-
 export const onSignOut = () => AsyncStorage.removeItem(JWT_KEY);
-
