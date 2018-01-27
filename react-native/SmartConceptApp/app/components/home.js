@@ -70,25 +70,25 @@ export default class Home extends Component {
             <View style={styles.container}>
                 <View style={styles.top}>
                     <View style={styles.activeRoute}>
-                        <Icon name="circle" size={50} color={this.state.ChooseVehicleColor} />
+                        <Icon name="circle" size={40} color={this.state.ChooseVehicleColor} />
                         <Text>Choose</Text>
                         <Text>Vehicle</Text>
                     </View>                    
                     {/* <Icon name="arrow-right" size={30} color={'#03A9F4'} /> */}
                     <View style={styles.activeRoute}>                
-                        <Icon name="circle" size={50} color={this.state.ChooseAddressColor} />
+                        <Icon name="circle" size={40} color={this.state.ChooseAddressColor} />
                         <Text>Choose</Text>
                         <Text>Address</Text>                        
                     </View>
                     {/* <Icon name="arrow-right" size={30} color={'#03A9F4'} /> */}
                     <View style={styles.activeRoute}>                    
-                        <Icon name="circle" size={50} color={this.state.ChoosePackageColor} />
+                        <Icon name="circle" size={40} color={this.state.ChoosePackageColor} />
                         <Text>Choose</Text>
                         <Text>Package</Text>                                                
                     </View>
                     {/* <Icon name="arrow-right" size={30} color={'#03A9F4'} />                                            */}
                     <View style={styles.activeRoute}>                
-                        <Icon name="circle" size={50} color={this.state.ChooseDaysColor} />
+                        <Icon name="circle" size={40} color={this.state.ChooseDaysColor} />
                         <Text>Choose</Text>
                         <Text>Days</Text>                        
                     </View>
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     bottom: {
-        flex: 4,
+        flex: 5,
         backgroundColor: '#FFF',
     }
 });
