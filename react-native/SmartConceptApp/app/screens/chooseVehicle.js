@@ -15,7 +15,6 @@ import {
     FormValidationMessage,
 
 } from "react-native-elements";
-import Icon from 'react-native-vector-icons/FontAwesome';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const brands = [
