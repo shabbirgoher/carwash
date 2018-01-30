@@ -13,6 +13,8 @@ exports.authorize = function(req, res, next){
     var strategy = req.params.strategy;
     
     passport.authenticate(strategy, { session: false }, function (err, user, info) {
+        if(!user)
+            return res.redirect('OAuthLogin://login?err=userNotAvailable');
         const accessToken = generateAccessToken(user.userId);
         var missingKeys = '';
         const validationErrors = new User(user).validateSync();
@@ -29,17 +31,19 @@ exports.signUp = function(req, res, next){
         ['tempJwt'], 
         {session: false}, 
         function(err, user, info){
+            if(!user)
+                return res.status(401).send("Unauthenticated request....");
             const newUser = {...user._doc, ...req.body};
             const userSchema = new User(newUser);            
             userSchema.userId = uuidv1();            
             const validationErrors = userSchema.validateSync();
             if(validationErrors){
-                res.status(400).send(validationErrors.errors);
+                return res.status(400).send(validationErrors.errors);
             }
             else{
                 userSchema.save();
                 const response = {token: generateAccessToken(userSchema.userId),user: userSchema};
-                res.status(200).send(response);
+                return res.status(200).send(response);
             }
         }
     )(req, res, next);

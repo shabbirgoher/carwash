@@ -15,11 +15,9 @@ var incompleteUser = new Schema({
     userName: String,
     facebook: {
         type: String,
-        unique: true
     },
     google: {
         type: String,
-        unique: true
     }
 });
 
