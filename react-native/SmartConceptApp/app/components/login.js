@@ -32,25 +32,31 @@ export default class Login extends Component {
             let [key, val] = hash.split('=')
             params[key] = decodeURIComponent(val)
         })
-    
+
         return params
     }
-    
+
     handleOpenURL = ({ url }) => {
         console.log(url);
         const params = this.getUrlParams(url);
+        const error = params["err"];
+        if (err) {
+            console.error("Unable to login :" + err);
+            alert("Unable to login. If error persists contact administrator.");
+            return;
+        }
         const jwtToken = params['token'] ? params['token'].split('#')[0] : undefined;
         const missingKeys = params['missing'] ? params['missing'].split('#')[0] : undefined;
         if (Platform.OS === 'ios') {
             SafariView.dismiss();
         }
-        console.debug("missingkeys::"+missingKeys);
-        if(missingKeys){
-            this.props.navigation.navigate('SignUp', {jwtToken: jwtToken});
+        console.debug("missingkeys::" + missingKeys);
+        if (missingKeys) {
+            this.props.navigation.navigate('SignUp', { jwtToken: jwtToken });
         }
-        else{
-            setJWT(jwtToken);            
-            this.props.navigation.navigate('SignedIn');  
+        else {
+            setJWT(jwtToken);
+            this.props.navigation.navigate('SignedIn');
         }
     };
 
