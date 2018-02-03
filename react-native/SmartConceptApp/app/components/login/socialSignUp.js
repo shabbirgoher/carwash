@@ -5,12 +5,12 @@ import {
 } from 'react-native';
 import { Card, Button, FormValidationMessage } from "react-native-elements";
 
-import Email from './../useFullComponents/email';
-import MobileNumber from './../useFullComponents/mobile';
-import {onSignUp} from './../services/tokenService'
-import { setJWT } from './../services/tokenService'
+import Email from './../../useFullComponents/email';
+import MobileNumber from './../../useFullComponents/mobile';
+import {onSignUp} from './../../services/tokenService'
+import { setJWT } from './../../services/tokenService'
 
-export default class SignUp extends Component{
+export default class SocialSignUp extends Component{
     constructor(props){
         super(props);
         this.state = {
@@ -41,6 +41,7 @@ export default class SignUp extends Component{
             mobileNumber: mobileNumber
         });
     }
+
     signUp = () => {
         this.setState({
             isLoading: true
@@ -51,7 +52,7 @@ export default class SignUp extends Component{
         ).then((response) => {
             if(!response.token){
                 this.setState({
-                    errorMessage: 'Unabel to signup. Please try again.',
+                    errorMessage: 'Unable to signup. Please try again.',
                     isLoading: false
                 });
             }

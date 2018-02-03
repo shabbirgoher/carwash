@@ -8,8 +8,7 @@ import {
 } from 'react-native';
 import SafariView from 'react-native-safari-view';
 
-
-import { setJWT } from './../services/tokenService'
+import { setJWT } from './../../services/tokenService';
 
 export default class SocialLogin extends Component {
     componentDidMount() {
@@ -52,7 +51,7 @@ export default class SocialLogin extends Component {
         }
         console.debug("missingkeys::" + missingKeys);
         if (missingKeys) {
-            this.props.onLogin('SignUp', { jwtToken: jwtToken });
+            this.props.onLogin('SocialSignUp', { jwtToken: jwtToken });
         }
         else {
             setJWT(jwtToken);

@@ -3,8 +3,8 @@ import { StatusBar, Platform, StyleSheet } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
 import Home from './components/home'
-import Login from './components/login'
-import SignUp from './components/signUp'
+import LoginScreen from './screens/loginScreen'
+import SocialSignUp from './components/login/socialSignUp'
 
 const headerStyle = {
   //marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
 
 export const SignedOut = StackNavigator({
   SignIn: {
-    screen: Login,
+    screen: LoginScreen,
     navigationOptions: {
       headerTitle: "Sign In",
       headerStyle,
@@ -30,8 +30,8 @@ export const SignedOut = StackNavigator({
       }
     }
   },
-  SignUp: {
-    screen: SignUp,
+  SocialSignUp: {
+    screen: SocialSignUp,
     navigationOptions: {
       headerTitle: "Sign Up",
       headerStyle,

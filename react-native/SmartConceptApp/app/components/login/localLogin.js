@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { View } from 'react-native';
 import { Card, Button } from "react-native-elements";
 
-import Email from './../useFullComponents/email';
-import Password from './../useFullComponents/password';
+import Email from './../../useFullComponents/email';
+import Password from './../../useFullComponents/password';
 export default class LocalLogin extends Component {
     constructor(props) {
         super(props);
@@ -31,7 +30,7 @@ export default class LocalLogin extends Component {
 
     render() {
         return (
-            <View >
+            <Card>
                 <Email hasError={this.hasEmailError} />
                 <Password hasError={this.hasPasswordError} />
                 <Button
@@ -41,7 +40,7 @@ export default class LocalLogin extends Component {
                     onPress={this.signUp}
                     disabled={this.state.isLoading || this.state.emailError || this.state.passwordErr}
                 />
-            </View>
+            </Card>
         )
     }
 }
