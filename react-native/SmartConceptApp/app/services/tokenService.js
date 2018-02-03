@@ -48,4 +48,24 @@ export function onSignUp(token, object, callback){
     });
 }
 
+function handleErrors(response) {
+    if (!response.ok) {
+        throw Error(response.statusText);
+    }
+    return response;
+}
+
+export function onResetPassword(object) {
+    return fetch(
+        'http://10.0.2.2:3000/auth/resetPassword',
+        {
+            method: 'post',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(object),
+        })
+        .then(handleErrors);
+}
+
 export const onSignOut = () => AsyncStorage.removeItem(JWT_KEY);

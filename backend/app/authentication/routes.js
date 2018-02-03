@@ -16,4 +16,5 @@ module.exports = function (app){
     // );
 
     app.post('/auth/signUp', authController.signUp)
+    app.post('/auth/resetPassword', authController.resetPassword)
 }

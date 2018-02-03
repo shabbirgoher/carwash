@@ -48,3 +48,9 @@ exports.signUp = function(req, res, next){
         }
     )(req, res, next);
 }
+
+exports.resetPassword = function(req, res, next){
+    const emailAddr = req.body.emailAddr;
+    console.log("reseting password :: " + emailAddr)
+    return res.sendStatus(200);
+}

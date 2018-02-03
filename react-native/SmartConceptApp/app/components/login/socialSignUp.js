@@ -93,16 +93,3 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
 });
-
-
-{/* <View style={styles.container}>
-                    <Email hasError = {this.hasEmailError}/>
-                    <MobileNumber hasError = {this.hasMobileNumberError}/>
-                    <TouchableOpacity
-                        style = {styles.submitButton}
-                        onPress = {this.signUp}
-                        disabled={this.state.emailError || this.state.mobileNumberError}
-                        >
-                        <Text style = {styles.submitButtonText}> Sign Up </Text>
-                    </TouchableOpacity>
-            </View> */}
