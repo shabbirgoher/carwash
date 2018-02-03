@@ -43,24 +43,14 @@ export default class Email extends Component{
     render(){
         return (
             <View>
-                <FormLabel>Email Address</FormLabel>
+                <FormLabel >Email Address</FormLabel>
                 <FormInput maxLength={30}
                     onChangeText={this.onEmailAddrChange}
                     keyboardType='email-address'
-                    onEndEditing={this.onEndEditing}    
+                    onEndEditing={this.onEndEditing} 
                 />
                 <FormValidationMessage>{this.state.emailError}</FormValidationMessage>
             </View>
         );
     }
 }
-
-// <Text style={styles.text}>Email Address</Text>
-// <TextInput 
-//     maxLength={30}
-//     onChangeText={this.onEmailAddrChange}
-//     keyboardType='email-address'
-//     style={styles.input}
-//     onEndEditing={this.onEndEditing}
-//     />
-// <Text style={styles.error}>{this.state.emailError}</Text>

@@ -4,76 +4,15 @@ import {
     StyleSheet,
     View,
     Text,
-    Platform,
-    Linking
 } from 'react-native';
-import SafariView from 'react-native-safari-view';
 
-import { setJWT } from './../services/tokenService'
+import SocialLogin from './socialLogin';
+import LocalLogin from './localLogin';
 
 export default class Login extends Component {
-    componentDidMount() {
-        Linking.addEventListener('url', this.handleOpenURL);
-        Linking.getInitialURL().then((url) => {
-            if (url) {
-                this.handleOpenURL({ url });
-            }
-        });
-    };
-
-    componentWillUnmount() {
-        Linking.removeEventListener('url', this.handleOpenURL);
-    };
-
-    getUrlParams(search) {
-        let hashes = search.slice(search.indexOf('?') + 1).split('&')
-        let params = {}
-        hashes.map(hash => {
-            let [key, val] = hash.split('=')
-            params[key] = decodeURIComponent(val)
-        })
-
-        return params
+    onLogin = (next, params) => {
+        this.props.navigation.navigate(next, params);
     }
-
-    handleOpenURL = ({ url }) => {
-        console.log(url);
-        const params = this.getUrlParams(url);
-        const error = params["err"];
-        if (err) {
-            console.error("Unable to login :" + err);
-            alert("Unable to login. If error persists contact administrator.");
-            return;
-        }
-        const jwtToken = params['token'] ? params['token'].split('#')[0] : undefined;
-        const missingKeys = params['missing'] ? params['missing'].split('#')[0] : undefined;
-        if (Platform.OS === 'ios') {
-            SafariView.dismiss();
-        }
-        console.debug("missingkeys::" + missingKeys);
-        if (missingKeys) {
-            this.props.navigation.navigate('SignUp', { jwtToken: jwtToken });
-        }
-        else {
-            setJWT(jwtToken);
-            this.props.navigation.navigate('SignedIn');
-        }
-    };
-
-    loginWithFacebook = () => this.openURL('http://10.0.2.2:3000/auth/facebook');
-    loginWithGoogle = () => this.openURL('https://10.0.2.2:3000/auth/google');
-
-    openURL = (url) => {
-        if (Platform.OS === 'ios') {
-            SafariView.show({
-                url: url,
-                fromBottom: true,
-            });
-        }
-        else {
-            Linking.openURL(url);
-        }
-    };
 
     render() {
         return (
@@ -87,30 +26,12 @@ export default class Login extends Component {
                         Please log in to continue {'\n'}
                         to the awesomness</Text>
                 </View>
-                {/* Login buttons */}
-                <View style={styles.buttons}>
-                    <Icon.Button
-                        name="facebook"
-                        backgroundColor="#3b5998"
-                        onPress={this.loginWithFacebook}
-                        {...iconStyles}
-                    >Login with Facebook</Icon.Button>
-                    <Icon.Button
-                        name="google"
-                        backgroundColor="#DD4B39"
-                        onPress={this.loginWithGoogle}
-                        {...iconStyles}
-                    >Or with Google</Icon.Button>
-                </View>
+                <LocalLogin />
+                <SocialLogin onLogin={this.onLogin}/>
             </View>
         );
     }
 }
-
-const iconStyles = {
-    borderRadius: 10,
-    iconStyle: { paddingVertical: 5 },
-};
 
 const styles = StyleSheet.create({
     container: {
@@ -134,11 +55,5 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: '#333',
         marginBottom: 5,
-    },
-    buttons: {
-        justifyContent: 'space-between',
-        flexDirection: 'row',
-        margin: 20,
-        marginBottom: 30,
     },
 });
