@@ -47,7 +47,7 @@ export default class Passowrd extends Component {
     render() {
         return (
             <View>
-                <FormLabel>Password</FormLabel>
+                <FormLabel>{this.props.passwordText || 'Password'}</FormLabel>
                 <FormInput maxLength={20}
                     secureTextEntry={true}
                     onChangeText={this.onPasswordChange}

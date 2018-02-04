@@ -16,14 +16,15 @@ var user = new Schema({
         unique: true,
         required: true
     },
+    password: {
+        type: String,
+    },
     userName: String,
     facebook: {
-        type: String,
-        unique: true
+        type: String
     },
     google: {
-        type: String,
-        unique: true
+        type: String
     },
     address: {
         line1: String,

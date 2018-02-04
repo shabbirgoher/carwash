@@ -15,6 +15,8 @@ module.exports = function (app){
     //     (req, res, next) => authController.authorize()
     // );
 
-    app.post('/auth/signUp', authController.signUp)
+    app.post('/auth/socialSignUp', authController.socialSignUp)
     app.post('/auth/resetPassword', authController.resetPassword)
+    app.post('/auth/localSignUp', authController.localSignUp)
+    app.post('/auth/localLogin', authController.localLogin)
 }

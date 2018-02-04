@@ -5,6 +5,7 @@ import {
     StyleSheet,
     View,
     Text,
+    ScrollView
 } from 'react-native';
 
 import Login from './../components/login/login';
@@ -47,7 +48,7 @@ export default class LoginScreen extends Component {
                 break;
         }
         return (
-            <View style={styles.container}>
+            <ScrollView style={styles.container}>
                 <View style={styles.top}>
                     <Card>
                         <ButtonGroup 
@@ -63,7 +64,7 @@ export default class LoginScreen extends Component {
                 <View style={styles.bottom}>
                     <Layout onLogin={this.onLogin}/>
                 </View>
-            </View>
+            </ScrollView>
         );
     }
 }

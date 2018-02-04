@@ -26,31 +26,89 @@ exports.authorize = function(req, res, next){
     })(req, res, next);
 }
 
-exports.signUp = function(req, res, next){
+async function saveUser(res, userObj){
+    const userSchema = new User(userObj);            
+    userSchema.userId = uuidv1();
+    try{    
+        const validationErrors = userSchema.validateSync();
+        if(validationErrors){
+            return res.status(400).send(validationErrors.errors);
+        }
+        else{
+            await userSchema.save();
+            return generateToken(res, userSchema.userId);
+        }
+    }
+    catch(err){
+        console.error(err);
+        return res.status(500).send({message: 'Unable to save data'});
+    }
+}
+
+function generateToken(res, id){
+    const response = {token: generateAccessToken(id)};
+    return res.status(200).send(response);
+}
+
+exports.socialSignUp = function(req, res, next){
     passport.authenticate(
         ['tempJwt'], 
         {session: false}, 
-        function(err, user, info){
+        async function(err, user, info){
             if(!user)
-                return res.status(401).send("Unauthenticated request....");
+                return res.status(401).send({message: "Unauthenticated request...."});
             const newUser = {...user._doc, ...req.body};
-            const userSchema = new User(newUser);            
-            userSchema.userId = uuidv1();            
-            const validationErrors = userSchema.validateSync();
-            if(validationErrors){
-                return res.status(400).send(validationErrors.errors);
-            }
-            else{
-                userSchema.save();
-                const response = {token: generateAccessToken(userSchema.userId),user: userSchema};
-                return res.status(200).send(response);
-            }
+            return await saveUser(res, newUser);
         }
     )(req, res, next);
 }
 
-exports.resetPassword = function(req, res, next){
+exports.localSignUp = async function(req, res, next){
+    const emailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    const credential = req.body;
+    var error = [];
+    if(!credential.email || !emailReg.test(credential.email)){
+        error.push("Invalid email address");
+    }
+    if(!credential.password || credential.password.length < 8){
+        error.push("Invalid password")
+    }
+    if(!credential.mobileNumber || credential.mobileNumber.length != 10){
+        error.push("Invalid mobile number")
+    }
+    if(error.length > 0){
+        return res.status(400).send({message: error.join('\n')});
+    }
+    return await saveUser(res, credential);
+}
+
+exports.localLogin = async function(req, res, next){
+    const credential = req.body;
+    try{
+    console.log('local login'+req.body);        
+        const user = await User.findOne({email: credential.email}).exec();
+        console.log(user);
+        if(user && user.password === credential.password){
+            return generateToken(res, user.userId);
+        }
+        return res.status(401).send({message: 'Invalid email or password'});
+    }
+    catch(err){
+        console.error(err);        
+        return res.status(500).send({message: 'Unable to fetch data'});
+    }
+}
+
+//TODO: Create token
+exports.regeneratePassword = function(req, res, next){
     const emailAddr = req.body.emailAddr;
-    console.log("reseting password :: " + emailAddr)
+    console.log("regenerating password :: " + emailAddr)
     return res.sendStatus(200);
 }
+
+exports.resetPassword = function(req, res, next){
+    const reqBody = req.body;
+    console.log("old password :: " + reqBody.oldPassword + " new password :: " + reqBody.newPassword)
+    return res.sendStatus(200);
+}
+

@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-import { Card, Button } from "react-native-elements";
+import { Card, Button, FormValidationMessage } from "react-native-elements";
 
 import Email from './../../useFullComponents/email';
 import Password from './../../useFullComponents/password';
+import { onLocalLogin, setJWT } from './../../services/tokenService'
+
 export default class LocalLogin extends Component {
     constructor(props) {
         super(props);
@@ -10,7 +12,8 @@ export default class LocalLogin extends Component {
             emailError: true,
             emailAddr: '',
             password: '',
-            passwordErr: true
+            passwordError: true,
+            errorMessage: '',
         };
     }
 
@@ -23,9 +26,28 @@ export default class LocalLogin extends Component {
 
     hasPasswordError = (error, password) => {
         this.setState({
-            epasswordError: error,
+            passwordError: error,
             password: password
         });
+    }
+
+    signIn = () => {
+        this.setState({ errorMessage: '' });
+        if (this.state.emailError || this.state.passwordError) {
+            this.setState({ errorMessage: 'Please correct above details.' });
+            return;
+        }
+
+        onLocalLogin({email: this.state.emailAddr, password: this.state.password})
+            .then((response) => {
+                setJWT(response.token);
+                this.props.onLogin('SignedIn');
+            })
+            .catch((err) => this.setState(
+                {
+                    errorMessage: err.message || 'Unable to login' 
+                }
+            ));
     }
 
     render() {
@@ -37,9 +59,9 @@ export default class LocalLogin extends Component {
                     buttonStyle={{ marginTop: 20 }}
                     backgroundColor="#03A9F4"
                     title="SIGN IN"
-                    onPress={this.signUp}
-                    disabled={this.state.isLoading || this.state.emailError || this.state.passwordErr}
+                    onPress={this.signIn}
                 />
+                <FormValidationMessage>{this.state.errorMessage}</FormValidationMessage>
             </Card>
         )
     }

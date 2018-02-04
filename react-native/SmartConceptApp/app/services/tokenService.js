@@ -50,14 +50,55 @@ export function onSignUp(token, object, callback){
 
 function handleErrors(response) {
     if (!response.ok) {
-        throw Error(response.statusText);
+        return response.json()
+            .then(response => {throw response});
     }
-    return response;
+    return response.json();
 }
 
-export function onResetPassword(object) {
+export function onRegeneratePassword(object) {
+    return fetch(
+        'http://10.0.2.2:3000/auth/regeneratePassword',
+        {
+            method: 'post',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(object),
+        })
+        .then(handleErrors);
+}
+
+export function onResetPassword(token, object){
     return fetch(
         'http://10.0.2.2:3000/auth/resetPassword',
+        {
+            method: 'post',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': token
+            },
+            body: JSON.stringify(object),
+        })
+        .then(handleErrors);
+}
+
+export function onLocalLogin(object){
+    return fetch(
+        'http://10.0.2.2:3000/auth/localLogin',
+        {
+            method: 'post',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(object),
+        })
+        .then(handleErrors);
+}
+
+export function onLocalSignUp(object){
+    return fetch(
+        'http://10.0.2.2:3000/auth/localSignUp',
         {
             method: 'post',
             headers: {

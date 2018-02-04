@@ -16,7 +16,7 @@ export default class Login extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <LocalLogin />
+                <LocalLogin onLogin={this.onLogin}/>
                 <SocialLogin onLogin={this.onLogin}/>
             </View>
         );

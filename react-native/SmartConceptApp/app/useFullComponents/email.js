@@ -22,6 +22,7 @@ export default class Email extends Component{
         this.setState ({
             emailAddr: emailAddr
         });
+
     }
     onEndEditing = () => {
         var error = true;
@@ -47,7 +48,8 @@ export default class Email extends Component{
                 <FormInput maxLength={30}
                     onChangeText={this.onEmailAddrChange}
                     keyboardType='email-address'
-                    onEndEditing={this.onEndEditing} 
+                    onEndEditing={this.onEndEditing}
+                    editable={!this.props.disabled}
                 />
                 <FormValidationMessage>{this.state.emailError}</FormValidationMessage>
             </View>
