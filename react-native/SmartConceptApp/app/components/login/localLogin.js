@@ -3,7 +3,7 @@ import { Card, Button, FormValidationMessage } from "react-native-elements";
 
 import Email from './../../useFullComponents/email';
 import Password from './../../useFullComponents/password';
-import { onLocalLogin, setJWT } from './../../services/tokenService'
+import { onLocalLogin, setJWT } from './../../services/tokenService';
 
 export default class LocalLogin extends Component {
     constructor(props) {

@@ -6,6 +6,7 @@ import {
 
 import Status from './../useFullComponents/status'
 import { Appointment } from './../navigators/appointmentNavigator'
+import Logout from './../components/login/logout';
 
 const selectedColor = '#b22222';
 const blankColor = 'rgba(0,0,0,.09)';
@@ -20,6 +21,17 @@ export default class Home extends Component {
                 ChoosePackageColor: blankColor     
         };
     }
+
+    static navigationOptions = ({ navigation }) => ({
+        headerTitle: "Home",
+        headerTitleStyle: {
+            alignSelf:'center',
+            textAlign: 'center',
+            width: '100%'
+        },
+        headerRight: <Logout navigator={navigation}/>
+    });
+
     onRouteActivated = (routeName) => {
         this.setState({
                 ChooseVehicleColor: blankColor,

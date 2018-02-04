@@ -2,9 +2,10 @@ import React from 'react';
 import { StatusBar, Platform, StyleSheet } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
-import Home from './components/home'
-import LoginScreen from './screens/loginScreen'
-import SocialSignUp from './components/login/socialSignUp'
+import Home from './components/home';
+import LoginScreen from './screens/loginScreen';
+import SocialSignUp from './components/login/socialSignUp';
+import Logout from './components/login/logout';
 
 const headerStyle = {
   //marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
@@ -46,16 +47,7 @@ export const SignedOut = StackNavigator({
 
 export const SignedIn = StackNavigator({
   Home: {
-    screen: Home,
-    navigationOptions: {
-      headerTitle: "Home",
-      headerStyle,
-      headerTitleStyle: {
-        alignSelf:'center',
-        textAlign: 'center',
-        width: '100%'
-      }
-    }
+    screen: Home
   }
 });
 
@@ -81,8 +73,4 @@ export const createRootNavigator = (signedIn = false) => {
       initialRouteName: signedIn ? "SignedIn" : "SignedOut"
     }
   );
-};
-
-//initialRouteName: signedIn ? "SignedIn" : "SignedOut"
-
-
+}
