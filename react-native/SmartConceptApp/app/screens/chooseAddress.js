@@ -50,6 +50,12 @@ export default class ChooseAddress extends Component{
                 this.setState({errorMessage: 'Please correct above details.'});
         }
         else{
+            if(this.props.screenProps && this.props.screenProps.onAddressSelected)
+                this.props.screenProps.onAddressSelected({
+                    cluster: this.state.cluster,
+                    towerName: this.state.towerName,
+                    apartment: this.state.apartment,
+                });
             this.props.navigation.navigate('ChoosePackage');            
         }
     }

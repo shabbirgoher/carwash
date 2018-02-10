@@ -30,4 +30,8 @@ export const Appointment = StackNavigator({
             header: null,
         }
     },
-});
+},
+{
+    initialRouteName: 'ChooseVehicle'
+}
+);

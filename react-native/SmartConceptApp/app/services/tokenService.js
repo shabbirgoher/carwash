@@ -33,7 +33,7 @@ export async function isSignedIn() {
 
 export function onSignUp(token, object, callback){
     return fetch(
-        'http://10.0.2.2:3000/auth/signUp', 
+        'http://10.0.2.2:3000/auth/socialSignUp', 
         {
             method: 'post',
             headers: {
@@ -103,6 +103,20 @@ export function onLocalSignUp(object){
             method: 'post',
             headers: {
                 'content-type': 'application/json'
+            },
+            body: JSON.stringify(object),
+        })
+        .then(handleErrors);
+}
+
+export function submitAppointment(token, object){
+    return fetch(
+        'http://10.0.2.2:3000/appointment',
+        {
+            method: 'post',
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': token
             },
             body: JSON.stringify(object),
         })

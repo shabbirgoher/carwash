@@ -59,6 +59,14 @@ export default class ChooseVehicle extends Component{
                 this.setState({errorMessage: 'Please correct above details.'});
         }
         else{
+            if(this.props.screenProps && this.props.screenProps.onVehicleSelected)
+                this.props.screenProps.onVehicleSelected({
+                    carBrand: this.state.carBrand,
+                    carModel: this.state.carModel,
+                    carType: this.state.carType,
+                    licenceNo: this.state.licenceNo,
+                    carColor: this.state.carColor
+                });
             this.props.navigation.navigate('ChooseAddress');            
         }
     }
