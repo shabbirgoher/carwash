@@ -3,10 +3,12 @@ import {
     View,
     StyleSheet,
 } from 'react-native';
+import {NavigationActions} from 'react-navigation';
 
 import Status from './../useFullComponents/status'
 import { Appointment } from './../navigators/appointmentNavigator'
 import Logout from './../components/login/logout';
+import { submitAppointment, getJWT } from './../services/tokenService';
 
 const selectedColor = '#b22222';
 const blankColor = 'rgba(0,0,0,.09)';
@@ -18,7 +20,11 @@ export default class Home extends Component {
             ChooseVehicleColor: selectedColor,
             ChooseAddressColor: blankColor,
             ChooseDaysColor: blankColor,
-            ChoosePackageColor: blankColor
+            ChoosePackageColor: blankColor,
+            vehicle: {},
+            address: {},
+            package: '',
+            days: []
         };
     }
 
@@ -43,12 +49,37 @@ export default class Home extends Component {
         activeRouteColor[routeName + 'Color'] = selectedColor;
         this.setState(activeRouteColor);
     }
-    onVehicleSelected = (vehicleObj) => {}
-    onAddressSelected = (addressObj) => {}
-    onPackageSelected = (packageObj) => {
-        
+    resetNavigation(targetRoute, data) {
+        const resetAction = NavigationActions.reset({
+            index: 0,
+            actions: [
+                NavigationActions.navigate({ routeName: targetRoute, params: data }),
+            ],
+        });
+        this.props.navigation.dispatch(resetAction);
     }
-    onDaysSelected = (daysObj) => {}
+    onVehicleSelected = (vehicleObj) => this.setState({ vehicle: vehicleObj });
+    onAddressSelected = (addressObj) => this.setState({ address: addressObj });
+    onPackageSelected = (packageObj) => this.setState({ package: packageObj.package });
+    onDaysSelected = async (days) => {
+        this.setState({ days: days });
+        const token = await getJWT();
+        const data = {
+            vehicle: this.state.vehicle,
+            address: this.state.address,
+            package: this.state.package,
+            days: this.state.days,
+        };
+        submitAppointment(
+            token,
+            data
+        ).then(() => this.resetNavigation('Confirmation', data))
+            .catch(err => {
+                alert('Something went wrong, please try after sometime or contact adminitrator');
+                console.error('An error occured while saving data ::\n' + err);
+            })
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -60,13 +91,13 @@ export default class Home extends Component {
                 </View>
                 <View style={styles.bottom}>
                     <Appointment
-                        screenProps={{ 
+                        screenProps={{
                             onRouteActivated: this.onRouteActivated,
                             onVehicleSelected: this.onVehicleSelected,
                             onAddressSelected: this.onAddressSelected,
                             onPackageSelected: this.onPackageSelected,
                             onDaysSelected: this.onDaysSelected
-                            }} />
+                        }} />
                 </View>
             </View>
         )

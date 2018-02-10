@@ -3,7 +3,7 @@ import FacebookStrategy from 'passport-facebook';
 import GoogleStrategy from 'passport-google-oauth20';
 // Import Facebook and Google OAuth apps configs
 import { facebook, google, jwtOptions } from './config';
-import passportJwt from 'passport-jwt';
+import PassportJwt from 'passport-jwt';
 import users from './userService';
 
 const transformFacebookProfile = (profile) => ({
@@ -20,16 +20,16 @@ const transformGoogleProfile = function (profile) {
   }
 }
 
-passport.use('jwt', new passportJwt.Strategy(jwtOptions,
+passport.use('jwt', new PassportJwt.Strategy(jwtOptions,
   async function (payload, done) {
     let user = await users.getUserById(payload.sub);
     if (user) {
       return done(null, user, payload);
     }
-    return done();
+    return done("Unautherize request");
   }));
 
-passport.use('tempJwt', new passportJwt.Strategy(jwtOptions,
+passport.use('tempJwt', new PassportJwt.Strategy(jwtOptions,
   async function (payload, done) {
     let user = await users.getTempUserById(payload.sub);
     if (user) {

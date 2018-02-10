@@ -19,9 +19,7 @@ export default class App extends Component {
   }
 
   async componentWillMount() {
-    var some = await getJWT();
-    console.debug("some"+ some);
-    let isSigned = await isSignedIn();
+    const isSigned = await isSignedIn();
     this.setState(
       { 
         signedIn: isSigned, 

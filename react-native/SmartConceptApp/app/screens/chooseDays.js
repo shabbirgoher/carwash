@@ -31,9 +31,7 @@ export default class ChooseDays extends Component {
             return;
         }
         if (this.props.screenProps && this.props.screenProps.onDaysSelected)
-            this.props.screenProps.onDaysSelected({
-                days: this.state.days,
-            });
+            this.props.screenProps.onDaysSelected(this.state.days);
     }
     back = () => this.props.navigation.goBack()
     checkBoxClicked = (value) => {

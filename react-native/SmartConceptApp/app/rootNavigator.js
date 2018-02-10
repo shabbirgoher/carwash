@@ -3,6 +3,7 @@ import { StatusBar, Platform, StyleSheet } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
 import Home from './components/home';
+import Confirmation from './screens/confirmation';
 import LoginScreen from './screens/loginScreen';
 import SocialSignUp from './components/login/socialSignUp';
 import Logout from './components/login/logout';
@@ -48,7 +49,13 @@ export const SignedOut = StackNavigator({
 export const SignedIn = StackNavigator({
   Home: {
     screen: Home
+  },
+  Confirmation: {
+    screen: Confirmation
   }
+},
+{
+  initialRouteName: 'Home'
 });
 
 export const createRootNavigator = (signedIn = false) => {

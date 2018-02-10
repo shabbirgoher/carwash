@@ -11,13 +11,15 @@ export async function setJWT(token) {
 }
 
 export async function getJWT() {
-    return await AsyncStorage.getItem(JWT_KEY);
+    const token = await AsyncStorage.getItem(JWT_KEY);
+    console.log('token: '+token);
+    return token;
 }
 
 export async function isSignedIn() {
     try {
         console.debug("Checking signed in???");
-        var token = await AsyncStorage.getItem('id_token');
+        var token = await AsyncStorage.getItem(JWT_KEY);
         console.debug("token :: " + token);
         if (!token) {
             return false;
@@ -49,6 +51,8 @@ export function onSignUp(token, object, callback){
 }
 
 function handleErrors(response) {
+    if(response.status === 401)
+        onSignOut();
     if (!response.ok) {
         return response.json()
             .then(response => {throw response});
@@ -123,4 +127,8 @@ export function submitAppointment(token, object){
         .then(handleErrors);
 }
 
-export const onSignOut = () => AsyncStorage.removeItem(JWT_KEY);
+export const onSignOut = async() => {
+    await AsyncStorage.removeItem(JWT_KEY);
+    console.log(await AsyncStorage.getAllKeys());
+    return;
+}
