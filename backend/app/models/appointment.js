@@ -6,6 +6,10 @@ var appointment = new Schema({
         unique: true,
         required: true
     },
+    userId: {
+        type: String,
+        required: true
+    },
     startDate: {
         type: String,
         required: true
@@ -37,11 +41,11 @@ var appointment = new Schema({
         }
     },
     address: {
-        cluster: {
+        building: {
             type: String,
             required: true
         },
-        towerName: {
+        parkingNumber: {
             type: String,
             required: true
         },

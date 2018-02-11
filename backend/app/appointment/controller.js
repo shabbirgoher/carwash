@@ -26,8 +26,10 @@ exports.bookAppointment = function (req, res, next) {
                 return res.status(401).send({ message: "Unauthenticated request...." });
             const appointment = new Appointment(req.body);
             appointment.appointmentId = uuidv1();
+            appointment.userId = user.userId;
             appointment.startDate = new Date().toUTCString();
             appointment.endDate = calculateEndDate(appointment.package);
+
             const validationErrors = appointment.validateSync();
             if (validationErrors) {
                 return res.status(400).send(validationErrors.errors);
@@ -36,6 +38,7 @@ exports.bookAppointment = function (req, res, next) {
                 await appointment.save();
             }
             catch(err){
+                console.error('Unable to save appointment :: '+err);
                 return res.status(500).send({message: 'Unable to save appointment'});
             }
             //TODO: send email

@@ -16,24 +16,26 @@ import {
 
 } from "react-native-elements";
 
-const clusters = [
-    {name: 'None', towers: []},
-    {name: 'A', towers: ['a1', 'a2', 'a3']},
-    {name: 'B', towers: ['b1', 'b2']},
-    {name: 'C', towers: ['c1']},
-    {name: 'D', towers: ['d1', 'd2']},
-    {name: 'E', towers: ['e1', 'e2', 'e3']}
-];
+const buildings = [
+    'Building 1',
+    'Building 2',
+    'Building 3',
+    'Building 4',
+    'Building 5',
+    'Building 6',
+    'Building 7'
+]
+
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 export default class ChooseAddress extends Component{
     constructor(props){
         super(props);
         this.state = {
-            cluster: 'None',
-            clusterError: '',
-            towerName: 'None',
-            towerNameError: '',
+            building: 'None',
+            buildingError: '',
+            parkingNumber: '',
+            parkingNumberError: '',
             apartment: '',
             apartmentError: ''
         };
@@ -44,16 +46,16 @@ export default class ChooseAddress extends Component{
             this.props.screenProps.onRouteActivated('ChooseAddress');
     }
     next = () => {
-        if(this.isNone(this.state.cluster)
-            || this.isNone(this.state.towerName)
+        if(this.isNone(this.state.building)
+            || !this.isAlphanumeric(this.state.parkingNumber)
             || !this.isAlphanumeric(this.state.apartment)){
                 this.setState({errorMessage: 'Please correct above details.'});
         }
         else{
             if(this.props.screenProps && this.props.screenProps.onAddressSelected)
                 this.props.screenProps.onAddressSelected({
-                    cluster: this.state.cluster,
-                    towerName: this.state.towerName,
+                    building: this.state.building,
+                    parkingNumber: this.state.parkingNumber,
                     apartment: this.state.apartment,
                 });
             this.props.navigation.navigate('ChoosePackage');            
@@ -86,28 +88,27 @@ export default class ChooseAddress extends Component{
         }
     }
 
-    clusterSelected = (itemValue, itemIndex) => {
-        this.setState({cluster: itemValue});        
+    buildingSelected = (itemValue, itemIndex) => {
+        this.setState({building: itemValue});        
         if(this.isNone(itemValue)){
             this.setState({
-                clusterError: 'Please select your cluster.'
+                buildingError: 'Please select your building'
             });
         }else{
             this.setState({
-                clusterError: ''
+                buildingError: ''
             });
         }
     }
 
-    towerNameSelected = (itemValue, itemIndex) => {
-        this.setState({towerName: itemValue});
-        if(this.isNone(itemValue)){
+    parkingNumberEntered = () => {
+        if(!this.isAlphanumeric(this.state.parkingNumber)){
             this.setState({
-                towerNameError: 'Please select your tower'
+                parkingNumberError: 'Please enter your parking number'
             });            
         }else{
             this.setState({
-                towerNameError: ''
+                parkingNumberError: ''
             });
         }
     }
@@ -115,31 +116,23 @@ export default class ChooseAddress extends Component{
         return (
             <ScrollView style={styles.container}>
                <Card>
-                    <FormLabel>Cluster</FormLabel>
+                    <FormLabel>Building</FormLabel>
                     <View style={styles.pickerContainer}>
                         <Picker
                             style={{ width: SCREEN_WIDTH - 100, height: 40 }}
-                            selectedValue={this.state.cluster}
-                            onValueChange={this.clusterSelected}>
-                            {clusters.map(c => c.name).map((item, index) => {
+                            selectedValue={this.state.building}
+                            onValueChange={this.buildingSelected}>
+                            {buildings.map((item, index) => {
                                 return (< Picker.Item label={item} value={item} key={index}/>);
                             })}   
                         </Picker>
                     </View>
-                    <FormValidationMessage>{this.state.clusterError}</FormValidationMessage>
+                    <FormValidationMessage>{this.state.buildingError}</FormValidationMessage>
                     
-                    <FormLabel>Tower Name</FormLabel>
-                    <View style={styles.pickerContainer}>
-                        <Picker
-                            style={{ width: SCREEN_WIDTH - 100, height: 40 }}
-                            selectedValue={this.state.towerName}
-                            onValueChange={this.towerNameSelected}>
-                            {clusters.filter(c => c.name === this.state.cluster)[0].towers.map((item, index) => {
-                                return (< Picker.Item label={item} value={item} key={index}/>);
-                            })}   
-                        </Picker>
-                    </View>
-                    <FormValidationMessage>{this.state.towerNameError}</FormValidationMessage>
+                    <FormLabel>Parking number</FormLabel>
+                    <FormInput onEndEditing={this.parkingNumberEntered} 
+                        onChangeText={text => this.setState({parkingNumber: text})}/>
+                    <FormValidationMessage>{this.state.parkingNumberError}</FormValidationMessage>
 
                     <FormLabel>Apartment</FormLabel>
                     <FormInput onEndEditing={this.apartmentEntered} 

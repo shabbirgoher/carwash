@@ -20,8 +20,8 @@ const vehicle = {
     carColor: 'carColor'
 };
 const address = {
-    cluster: 'cluster',
-    towerName: 'towerName',
+    building: 'building',
+    parkingNumber: 'parkingNumber',
     apartment: 'apartment',
 };
 const packageDetails = "daily12Month";
@@ -84,10 +84,10 @@ export default class Confirmation extends Component {
                 </Card>
                 <Card title='Address details'>
                     <View style={styles.content}>
-                        <Text style={styles.textLabel}>Cluster</Text>
-                        <Text style={styles.textValue}>{this.state.address.cluster}</Text>
-                        <Text style={styles.textLabel}>Tower</Text>
-                        <Text style={styles.textValue}>{this.state.address.towerName}</Text>
+                        <Text style={styles.textLabel}>Building</Text>
+                        <Text style={styles.textValue}>{this.state.address.building}</Text>
+                        <Text style={styles.textLabel}>Parking number</Text>
+                        <Text style={styles.textValue}>{this.state.address.parkingNumber}</Text>
                     </View>
                     <View style={styles.content}>
                         <Text style={styles.textLabel}>Appartment</Text>
