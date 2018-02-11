@@ -24,7 +24,7 @@ export default class MobileNumber extends Component{
                 error = true;
             }
         }
-        if(text.length != 10 || error){
+        if(text.length != 8 || error){
             this.setState({
                 mobileNumberError: 'Invalid mobile number'
             });

@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 const uuidv1 = require('uuid/v1');
 
 import User from './../models/user';
-import TempUser from './../models/incompeleteUser'
+import TempUser from './../models/incompeleteUser';
 
 exports.getUserById = async function (userId) {
     const query = { 'userId': userId };

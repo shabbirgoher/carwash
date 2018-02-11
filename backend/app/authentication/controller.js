@@ -73,7 +73,7 @@ exports.localSignUp = async function(req, res, next){
     if(!credential.password || credential.password.length < 8){
         error.push("Invalid password")
     }
-    if(!credential.mobileNumber || credential.mobileNumber.length != 10){
+    if(!credential.mobileNumber || credential.mobileNumber.length != 8){
         error.push("Invalid mobile number")
     }
     if(error.length > 0){

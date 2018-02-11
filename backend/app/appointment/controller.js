@@ -2,6 +2,7 @@ const uuidv1 = require('uuid/v1');
 import passport from 'passport';
 
 import Appointment from './../models/appointment';
+import MailSender from './../email/sender';
 
 function calculateEndDate(packageType) {
     const today = new Date();
@@ -41,7 +42,7 @@ exports.bookAppointment = function (req, res, next) {
                 console.error('Unable to save appointment :: '+err);
                 return res.status(500).send({message: 'Unable to save appointment'});
             }
-            //TODO: send email
+            //MailSender.sendConfirmationEmail(appointment);
             return res.status(201).send({});
         }
     )(req, res, next);
