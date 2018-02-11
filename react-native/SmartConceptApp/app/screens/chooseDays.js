@@ -17,7 +17,7 @@ const days = [
 export default class ChooseDays extends Component {
     constructor(props) {
         super(props);
-        this.state = { days: [], errorMessage: '' };
+        this.state = { days: [], errorMessage: '', isLoading: false };
     }
     componentDidMount() {
         if (this.props.screenProps && this.props.screenProps.onRouteActivated)
@@ -30,6 +30,7 @@ export default class ChooseDays extends Component {
             });
             return;
         }
+        this.setState({ isLoading: true });
         if (this.props.screenProps && this.props.screenProps.onDaysSelected)
             this.props.screenProps.onDaysSelected(this.state.days);
     }
