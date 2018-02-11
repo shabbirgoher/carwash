@@ -83,12 +83,12 @@ export default class SocialLogin extends Component {
                     onPress={this.loginWithFacebook}
                     {...iconStyles}
                 >Login with Facebook</Icon.Button>
-                <Icon.Button
+                {/* <Icon.Button
                     name="google"
                     backgroundColor="#DD4B39"
                     onPress={this.loginWithGoogle}
                     {...iconStyles}
-                >Or with Google</Icon.Button>
+                >Or with Google</Icon.Button> */}
             </View>
         );
     }
