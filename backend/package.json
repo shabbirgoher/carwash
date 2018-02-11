@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js",
+    "start": "node_modules/nodemon/bin/nodemon.js -- node_modules/babel-cli/bin/babel-node.js index.js",
     "local": "node_modules/nodemon/bin/nodemon.js --config config/config.local.json -- node_modules/babel-cli/bin/babel-node.js index.js",
     "localaz": "node_modules/nodemon/bin/nodemon.js --config config/config.localaz.json -- node_modules/babel-cli/bin/babel-node.js index.js",
     "testaz": "node_modules/nodemon/bin/nodemon.js --config config/config.testaz.json -- node_modules/babel-cli/bin/babel-node.js index.js",
@@ -22,6 +22,7 @@
     "nodemon": "^1.14.11"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "body-parser": "^1.18.2",
     "cookie-session": "^2.0.0-beta.3",
     "express": "^4.16.2",

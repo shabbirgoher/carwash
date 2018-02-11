@@ -1,5 +1,11 @@
 import { AsyncStorage } from 'react-native';
 
+// local url
+const apiUrl = 'http://10.0.2.2:3000';
+// azure dev url
+// const apiUrl = 'https://smartconcept.azurewebsites.net';
+// azure prod url
+// const apiUrl = 'http://10.0.2.2:3000';
 export const JWT_KEY = 'id_token';
 
 export async function setJWT(token) {
@@ -35,7 +41,7 @@ export async function isSignedIn() {
 
 export function onSignUp(token, object, callback){
     return fetch(
-        'http://10.0.2.2:3000/auth/socialSignUp', 
+        apiUrl + '/auth/socialSignUp', 
         {
             method: 'post',
             headers: {
@@ -62,7 +68,7 @@ function handleErrors(response) {
 
 export function onRegeneratePassword(object) {
     return fetch(
-        'http://10.0.2.2:3000/auth/regeneratePassword',
+        apiUrl + '/auth/regeneratePassword',
         {
             method: 'post',
             headers: {
@@ -75,7 +81,7 @@ export function onRegeneratePassword(object) {
 
 export function onResetPassword(token, object){
     return fetch(
-        'http://10.0.2.2:3000/auth/resetPassword',
+        apiUrl + '/auth/resetPassword',
         {
             method: 'post',
             headers: {
@@ -89,7 +95,7 @@ export function onResetPassword(token, object){
 
 export function onLocalLogin(object){
     return fetch(
-        'http://10.0.2.2:3000/auth/localLogin',
+        apiUrl + '/auth/localLogin',
         {
             method: 'post',
             headers: {
@@ -102,7 +108,7 @@ export function onLocalLogin(object){
 
 export function onLocalSignUp(object){
     return fetch(
-        'http://10.0.2.2:3000/auth/localSignUp',
+        apiUrl + '/auth/localSignUp',
         {
             method: 'post',
             headers: {
@@ -115,7 +121,7 @@ export function onLocalSignUp(object){
 
 export function submitAppointment(token, object){
     return fetch(
-        'http://10.0.2.2:3000/appointment',
+        apiUrl + '/appointment',
         {
             method: 'post',
             headers: {

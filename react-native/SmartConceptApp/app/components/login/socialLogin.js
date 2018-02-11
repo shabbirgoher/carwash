@@ -10,6 +10,13 @@ import SafariView from 'react-native-safari-view';
 
 import { setJWT } from './../../services/tokenService';
 
+// local url
+//const apiUrl = 'http://10.0.2.2:3000';
+// azure dev url
+const apiUrl = 'https://smartconcept.azurewebsites.net';
+// azure prod url
+// const apiUrl = 'http://10.0.2.2:3000';
+
 export default class SocialLogin extends Component {
     componentDidMount() {
         Linking.addEventListener('url', this.handleOpenURL);
@@ -59,8 +66,8 @@ export default class SocialLogin extends Component {
         }
     };
 
-    loginWithFacebook = () => this.openURL('http://10.0.2.2:3000/auth/facebook');
-    loginWithGoogle = () => this.openURL('https://10.0.2.2:3000/auth/google');
+    loginWithFacebook = () => this.openURL(apiUrl + '/auth/facebook');
+    loginWithGoogle = () => this.openURL(apiUrl + '/auth/google');
 
     openURL = (url) => {
         if (Platform.OS === 'ios') {
