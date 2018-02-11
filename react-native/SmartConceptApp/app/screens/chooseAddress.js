@@ -16,20 +16,11 @@ import {
 
 } from "react-native-elements";
 
-const buildings = [
-    'Building 1',
-    'Building 2',
-    'Building 3',
-    'Building 4',
-    'Building 5',
-    'Building 6',
-    'Building 7'
-]
-
+import { getBuildingList } from './../services/tokenService';
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
-export default class ChooseAddress extends Component{
-    constructor(props){
+export default class ChooseAddress extends Component {
+    constructor(props) {
         super(props);
         this.state = {
             building: 'None',
@@ -37,28 +28,35 @@ export default class ChooseAddress extends Component{
             parkingNumber: '',
             parkingNumberError: '',
             apartment: '',
-            apartmentError: ''
+            apartmentError: '',
+            buildings: []
         };
     }
 
-    componentDidMount(){
-        if(this.props.screenProps && this.props.screenProps.onRouteActivated)
+    componentDidMount() {
+        if (this.props.screenProps && this.props.screenProps.onRouteActivated)
             this.props.screenProps.onRouteActivated('ChooseAddress');
+
+        getBuildingList()
+        .then(res => this.setState({buildings: ['None'].concat(res)}))
+        .catch(err => {
+            console.error('Unable to load vehciles');
+        })
     }
     next = () => {
-        if(this.isNone(this.state.building)
+        if (this.isNone(this.state.building)
             || !this.isAlphanumeric(this.state.parkingNumber)
-            || !this.isAlphanumeric(this.state.apartment)){
-                this.setState({errorMessage: 'Please correct above details.'});
+            || !this.isAlphanumeric(this.state.apartment)) {
+            this.setState({ errorMessage: 'Please correct above details.' });
         }
-        else{
-            if(this.props.screenProps && this.props.screenProps.onAddressSelected)
+        else {
+            if (this.props.screenProps && this.props.screenProps.onAddressSelected)
                 this.props.screenProps.onAddressSelected({
                     building: this.state.building,
                     parkingNumber: this.state.parkingNumber,
                     apartment: this.state.apartment,
                 });
-            this.props.navigation.navigate('ChoosePackage');            
+            this.props.navigation.navigate('ChoosePackage');
         }
     }
 
@@ -66,22 +64,21 @@ export default class ChooseAddress extends Component{
         this.props.navigation.goBack();
     }
 
-    isAlphanumeric(value)
-    { 
+    isAlphanumeric(value) {
         var letters = /^[0-9a-zA-Z\s]+$/;
         return value.match(letters);
     }
 
-    isNone(value){
+    isNone(value) {
         return value === 'None';
     }
 
     apartmentEntered = () => {
-        if(!this.isAlphanumeric(this.state.apartment)){
+        if (!this.isAlphanumeric(this.state.apartment)) {
             this.setState({
                 apartmentError: 'Please enter your apartment'
             });
-        }else{
+        } else {
             this.setState({
                 apartmentError: ''
             });
@@ -89,12 +86,12 @@ export default class ChooseAddress extends Component{
     }
 
     buildingSelected = (itemValue, itemIndex) => {
-        this.setState({building: itemValue});        
-        if(this.isNone(itemValue)){
+        this.setState({ building: itemValue });
+        if (this.isNone(itemValue)) {
             this.setState({
                 buildingError: 'Please select your building'
             });
-        }else{
+        } else {
             this.setState({
                 buildingError: ''
             });
@@ -102,57 +99,57 @@ export default class ChooseAddress extends Component{
     }
 
     parkingNumberEntered = () => {
-        if(!this.isAlphanumeric(this.state.parkingNumber)){
+        if (!this.isAlphanumeric(this.state.parkingNumber)) {
             this.setState({
                 parkingNumberError: 'Please enter your parking number'
-            });            
-        }else{
+            });
+        } else {
             this.setState({
                 parkingNumberError: ''
             });
         }
     }
-    render(){
+    render() {
         return (
             <ScrollView style={styles.container}>
-               <Card>
+                <Card>
                     <FormLabel>Building</FormLabel>
                     <View style={styles.pickerContainer}>
                         <Picker
                             style={{ width: SCREEN_WIDTH - 100, height: 40 }}
                             selectedValue={this.state.building}
                             onValueChange={this.buildingSelected}>
-                            {buildings.map((item, index) => {
-                                return (< Picker.Item label={item} value={item} key={index}/>);
-                            })}   
+                            {this.state.buildings.map((item, index) => {
+                                return (< Picker.Item label={item} value={item} key={index} />);
+                            })}
                         </Picker>
                     </View>
                     <FormValidationMessage>{this.state.buildingError}</FormValidationMessage>
-                    
+
                     <FormLabel>Parking number</FormLabel>
-                    <FormInput onEndEditing={this.parkingNumberEntered} 
-                        onChangeText={text => this.setState({parkingNumber: text})}/>
+                    <FormInput onEndEditing={this.parkingNumberEntered}
+                        onChangeText={text => this.setState({ parkingNumber: text })} />
                     <FormValidationMessage>{this.state.parkingNumberError}</FormValidationMessage>
 
                     <FormLabel>Apartment</FormLabel>
-                    <FormInput onEndEditing={this.apartmentEntered} 
-                        onChangeText={text => this.setState({apartment: text})}/>
+                    <FormInput onEndEditing={this.apartmentEntered}
+                        onChangeText={text => this.setState({ apartment: text })} />
                     <FormValidationMessage>{this.state.apartmentError}</FormValidationMessage>
-                    
+
                     <View style={styles.buttonContainer}>
                         <Button
                             buttonStyle={{ marginTop: 20 }}
                             backgroundColor="#03A9F4"
                             title="BACK"
                             onPress={this.back}
-                            disabled= {this.state.isLoading}
+                            disabled={this.state.isLoading}
                         />
                         <Button
                             buttonStyle={{ marginTop: 20 }}
                             backgroundColor="#03A9F4"
                             title="NEXT"
                             onPress={this.next}
-                            disabled= {this.state.isLoading}
+                            disabled={this.state.isLoading}
                         />
                     </View>
                     <FormValidationMessage>{this.state.errorMessage}</FormValidationMessage>

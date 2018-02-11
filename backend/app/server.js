@@ -17,6 +17,7 @@ mongoose.connect(process.env.MONGODB_URI);
 require('./authentication').init(app);
 require('./secureModule').init(app);
 require('./appointment').init(app);
+require('./staticData').init(app);
 
 const port = process.env.PORT || 3000
 // Launch the server on the port 3000

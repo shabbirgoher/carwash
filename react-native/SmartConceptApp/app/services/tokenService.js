@@ -133,6 +133,15 @@ export function submitAppointment(token, object){
         .then(handleErrors);
 }
 
+export function getBuildingList(){
+    return fetch(
+        apiUrl + '/buildings',
+        {
+            method: 'get'
+        })
+        .then(handleErrors);
+}
+
 export const onSignOut = async() => {
     await AsyncStorage.removeItem(JWT_KEY);
     console.log(await AsyncStorage.getAllKeys());
