@@ -40,9 +40,7 @@ export default class Confirmation extends Component {
             days: this.props.navigation.state.params.days,
         }
     }
-    componentDidMount() {
-        console.log(this);
-    }
+    
     static navigationOptions = ({ navigation }) => ({
         headerTitle: "Confirmation",
         headerTitleStyle: {

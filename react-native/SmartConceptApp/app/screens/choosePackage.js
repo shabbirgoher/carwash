@@ -3,6 +3,7 @@ import {
     View,
     StyleSheet,
     Text,
+    ScrollView,
 } from 'react-native';
 import { FormValidationMessage, Card, Button } from "react-native-elements";
 
@@ -25,15 +26,16 @@ export default class ChoosePackage extends Component {
             this.props.screenProps.onRouteActivated('ChoosePackage');
     }
     next = () => {
-        if (!this.state.selectedPackage){
-            this.setState({ errorMessage: 'Please select a package.' });
+        this.setState({ errorMessage: '' });
+        if (!this.state.selectedPackage) {
+            this.setState({ errorMessage: 'Please select a package' });
             return;
         }
         if (this.props.screenProps && this.props.screenProps.onPackageSelected)
             this.props.screenProps.onPackageSelected({
                 package: this.state.selectedPackage,
             });
-        this.props.navigation.navigate('ChooseDays', {numberOfDays: this.state.numberOfDays});
+        this.props.navigation.navigate('ChooseDays', { numberOfDays: this.state.numberOfDays });
     }
 
     back = () => {
@@ -56,7 +58,7 @@ export default class ChoosePackage extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <ScrollView style={styles.container} keyboardShouldPersistTaps='handled'>
                 <View style={styles.packagePeriod}>
                     <PackagePeriod />
                 </View>
@@ -85,7 +87,7 @@ export default class ChoosePackage extends Component {
                     />
                 </View>
                 <FormValidationMessage>{this.state.errorMessage}</FormValidationMessage>
-            </View>
+            </ScrollView>
         );
     }
 }

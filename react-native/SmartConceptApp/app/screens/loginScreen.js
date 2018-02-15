@@ -48,7 +48,7 @@ export default class LoginScreen extends Component {
                 break;
         }
         return (
-            <ScrollView style={styles.container}>
+            <ScrollView style={styles.container} keyboardShouldPersistTaps='handled'>
                 <View style={styles.top}>
                     <Card>
                         <ButtonGroup 

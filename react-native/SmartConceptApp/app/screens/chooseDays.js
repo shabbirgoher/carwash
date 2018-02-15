@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {
     StyleSheet,
-    View
+    View,
+    ScrollView,
 } from 'react-native';
 import {
     CheckBox,
@@ -24,6 +25,7 @@ export default class ChooseDays extends Component {
             this.props.screenProps.onRouteActivated('ChooseDays');
     }
     next = () => {
+        this.setState({ errorMessage: '' })
         if (this.state.days.length != this.props.navigation.state.params.numberOfDays) {
             this.setState({
                 errorMessage: 'Please select ' + this.props.navigation.state.params.numberOfDays + ' days'
@@ -49,37 +51,39 @@ export default class ChooseDays extends Component {
     }
     render() {
         return (
-            <Card style={styles.container}>
-                <Text>Choose any {this.props.navigation.state.params.numberOfDays} days</Text>
-                {
-                    days.map(
-                        (value) =>
-                            <CheckBox
-                                title={value}
-                                checked={this.state.days.includes(value)}
-                                onIconPress={() => this.checkBoxClicked(value)}
-                                key={value}
-                            />
-                    )
-                }
-                <View style={styles.buttonContainer}>
-                    <Button
-                        buttonStyle={{ marginTop: 20 }}
-                        backgroundColor="#03A9F4"
-                        title="BACK"
-                        onPress={this.back}
-                        disabled={this.state.isLoading}
-                    />
-                    <Button
-                        buttonStyle={{ marginTop: 20 }}
-                        backgroundColor="#03A9F4"
-                        title="SUBMIT"
-                        onPress={this.next}
-                        disabled={this.state.isLoading}
-                    />
-                </View>
-                <FormValidationMessage>{this.state.errorMessage}</FormValidationMessage>
-            </Card>
+            <ScrollView keyboardShouldPersistTaps='handled'>
+                <Card style={styles.container}>
+                    <Text>Choose any {this.props.navigation.state.params.numberOfDays} days</Text>
+                    {
+                        days.map(
+                            (value) =>
+                                <CheckBox
+                                    title={value}
+                                    checked={this.state.days.includes(value)}
+                                    onIconPress={() => this.checkBoxClicked(value)}
+                                    key={value}
+                                />
+                        )
+                    }
+                    <View style={styles.buttonContainer}>
+                        <Button
+                            buttonStyle={{ marginTop: 20 }}
+                            backgroundColor="#03A9F4"
+                            title="BACK"
+                            onPress={this.back}
+                            disabled={this.state.isLoading}
+                        />
+                        <Button
+                            buttonStyle={{ marginTop: 20 }}
+                            backgroundColor="#03A9F4"
+                            title="SUBMIT"
+                            onPress={this.next}
+                            disabled={this.state.isLoading}
+                        />
+                    </View>
+                    <FormValidationMessage>{this.state.errorMessage}</FormValidationMessage>
+                </Card>
+            </ScrollView>
         );
     }
 }

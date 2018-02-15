@@ -38,16 +38,17 @@ export default class ChooseAddress extends Component {
             this.props.screenProps.onRouteActivated('ChooseAddress');
 
         getBuildingList()
-        .then(res => this.setState({buildings: ['None'].concat(res)}))
-        .catch(err => {
-            console.error('Unable to load vehciles');
-        })
+            .then(res => this.setState({ buildings: ['None'].concat(res) }))
+            .catch(err => {
+                console.error('Unable to load vehciles');
+            })
     }
     next = () => {
+        this.setState({ errorMessage: '' });
         if (this.isNone(this.state.building)
             || !this.isAlphanumeric(this.state.parkingNumber)
             || !this.isAlphanumeric(this.state.apartment)) {
-            this.setState({ errorMessage: 'Please correct above details.' });
+            this.setState({ errorMessage: 'Please correct above details' });
         }
         else {
             if (this.props.screenProps && this.props.screenProps.onAddressSelected)
@@ -111,7 +112,7 @@ export default class ChooseAddress extends Component {
     }
     render() {
         return (
-            <ScrollView style={styles.container}>
+            <ScrollView style={styles.container} keyboardShouldPersistTaps='handled'>
                 <Card>
                     <FormLabel>Building</FormLabel>
                     <View style={styles.pickerContainer}>

@@ -54,12 +54,13 @@ export default class ChooseVehicle extends Component {
     }
 
     next = () => {
+        this.setState({ errorMessage: '' });
         if (this.isNone(this.state.carBrand)
             || !this.isAlphanumeric(this.state.carColor)
             || !this.isAlphanumeric(this.state.carModel)
             || this.isNone(this.state.carType)
             || !this.isAlphanumeric(this.state.licenceNo)) {
-            this.setState({ errorMessage: 'Please correct above details.' });
+            this.setState({ errorMessage: 'Please correct above details' });
         }
         else {
             if (this.props.screenProps && this.props.screenProps.onVehicleSelected)
@@ -147,7 +148,7 @@ export default class ChooseVehicle extends Component {
 
     render() {
         return (
-            <ScrollView style={styles.container}>
+            <ScrollView style={styles.container} keyboardShouldPersistTaps='handled'>
                 <Card>
                     <FormLabel>Car Brand</FormLabel>
                     <View style={styles.pickerContainer}>
@@ -196,6 +197,7 @@ export default class ChooseVehicle extends Component {
                         title="NEXT"
                         onPress={this.next}
                         disabled={this.state.isLoading}
+                        
                     />
                     <FormValidationMessage>{this.state.errorMessage}</FormValidationMessage>
                 </Card>
