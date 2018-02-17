@@ -40,7 +40,7 @@ export default class Confirmation extends Component {
             days: this.props.navigation.state.params.days,
         }
     }
-    
+
     static navigationOptions = ({ navigation }) => ({
         headerTitle: "Confirmation",
         headerTitleStyle: {
@@ -49,7 +49,7 @@ export default class Confirmation extends Component {
             width: '100%'
         },
         gesturesEnabled: false,
-        headerLeft: null,     
+        headerLeft: null,
         headerRight: <Logout navigator={navigation} />
     });
 
@@ -66,12 +66,12 @@ export default class Confirmation extends Component {
                     <View style={styles.content}>
                         <Text style={styles.textLabel}>Brand</Text>
                         <Text style={styles.textValue}>{this.state.vehicle.carBrand}</Text>
+                    </View>
+                    <View style={styles.content}>
                         <Text style={styles.textLabel}>Car Model</Text>
                         <Text style={styles.textValue}>{this.state.vehicle.carModel}</Text>
                     </View>
                     <View style={styles.content}>
-                        <Text style={styles.textLabel}>Type</Text>
-                        <Text style={styles.textValue}>{this.state.vehicle.carType}</Text>
                         <Text style={styles.textLabel}>License no</Text>
                         <Text style={styles.textValue}>{this.state.vehicle.licenceNo}</Text>
                     </View>
@@ -84,6 +84,8 @@ export default class Confirmation extends Component {
                     <View style={styles.content}>
                         <Text style={styles.textLabel}>Building</Text>
                         <Text style={styles.textValue}>{this.state.address.building}</Text>
+                    </View>
+                    <View style={styles.content}>
                         <Text style={styles.textLabel}>Parking number</Text>
                         <Text style={styles.textValue}>{this.state.address.parkingNumber}</Text>
                     </View>
@@ -93,7 +95,7 @@ export default class Confirmation extends Component {
                     </View>
                 </Card>
                 <Card title='Package details'>
-                    <View style={{ flexDirection: 'row' }}>
+                    <View style={styles.content}>
                         <Text style={styles.textLabel}>Type</Text>
                         <Text style={styles.textValue}>{
                             this.state.package.includes('basic')
@@ -102,6 +104,9 @@ export default class Confirmation extends Component {
                                     ? 'Advance'
                                     : 'Daily'}
                         </Text>
+
+                    </View>
+                    <View style={styles.content}>
                         <Text style={styles.textLabel}>Month(s)</Text>
                         <Text style={styles.textValue}>{
                             this.state.package.includes('1Month')
@@ -121,7 +126,7 @@ export default class Confirmation extends Component {
                         icon={<Icon
                             name='arrow-right'
                             size={15}
-                            color='white'/>}
+                            color='white' />}
                         buttonStyle={{ backgroundColor: "rgba(92, 99,216, 1)" }}
                         onPress={() => this.props.navigation.navigate('Home')}
                     />
