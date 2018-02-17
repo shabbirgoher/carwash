@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
-import {View} from 'react-native';
+import React, { Component } from 'react';
+import { View } from 'react-native';
 import { FormLabel, FormInput, FormValidationMessage } from "react-native-elements";
 
-export default class MobileNumber extends Component{
-    constructor(props){
+export default class MobileNumber extends Component {
+    constructor(props) {
         super(props);
         this.state = {
             mobileNumber: '',
@@ -11,7 +11,7 @@ export default class MobileNumber extends Component{
         }
     }
     onMobileNumberChange = (mobileNumber) => {
-        this.setState ({
+        this.setState({
             mobileNumber: mobileNumber
         });
     }
@@ -19,49 +19,41 @@ export default class MobileNumber extends Component{
         var numbers = '0123456789';
         let text = this.state.mobileNumber;
         var error = false;
-        for (var i=0; i < text.length; i++) {
-            if(numbers.indexOf(text[i]) < 0 ) {
+        for (var i = 0; i < text.length; i++) {
+            if (numbers.indexOf(text[i]) < 0) {
                 error = true;
             }
         }
-        if(text.length != 8 || error){
+        if (text.length != 8 || error) {
             this.setState({
                 mobileNumberError: 'Invalid mobile number'
             });
             error = true;
         }
-        else{
+        else {
             this.setState({
                 mobileNumberError: ''
             });
         }
-        
-        if(this.props.hasError) this.props.hasError(error, this.state.mobileNumber); 
+
+        if (this.props.hasError) this.props.hasError(error, this.state.mobileNumber);
     }
-    render(){
+    render() {
         return (
             <View>
                 <FormLabel>Mobile Number</FormLabel>
-                <FormInput maxLength={10}
-                    onChangeText={this.onMobileNumberChange}
-                    keyboardType='numeric'
-                    onEndEditing={this.onEndEditing}    
-                />
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    <FormInput placeholder='+968' editable={false} containerStyle={{ flex: 1 }} />
+                    <FormInput maxLength={8}
+                        containerStyle={{ flex: 3 }}
+                        onChangeText={this.onMobileNumberChange}
+                        keyboardType='numeric'
+                        onEndEditing={this.onEndEditing}
+                    />
+                </View>
                 <FormValidationMessage>{this.state.mobileNumberError}</FormValidationMessage>
             </View>
-            
+
         );
     }
 }
-{/* <View>
-                
-                <Text style={styles.text}>Mobile Number</Text>
-                <TextInput 
-                    maxLength={30}
-                    onChangeText={this.onMobileNumberChange}
-                    keyboardType='numeric'
-                    style={styles.input}
-                    onEndEditing={this.onEndEditing}
-                    />
-                <Text style={styles.error}>{this.state.mobileNumberError}</Text>
-        </View> */}

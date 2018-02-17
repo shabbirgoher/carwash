@@ -11,9 +11,9 @@ import SafariView from 'react-native-safari-view';
 import { setJWT } from './../../services/tokenService';
 
 // local url
-//const apiUrl = 'http://10.0.2.2:3000';
+const apiUrl = 'http://10.0.2.2:3000';
 // azure dev url
-const apiUrl = 'https://smartconcept.azurewebsites.net';
+// const apiUrl = 'https://smartconcept.azurewebsites.net';
 // azure prod url
 // const apiUrl = 'http://10.0.2.2:3000';
 
