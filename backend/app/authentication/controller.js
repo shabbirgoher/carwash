@@ -67,7 +67,7 @@ exports.localSignUp = async function(req, res, next){
     const emailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     const credential = req.body;
     var error = [];
-    if(!credential.email || !emailReg.test(credential.email)){
+    if(!credential.emailAddr || !emailReg.test(credential.emailAddr)){
         error.push("Invalid email address");
     }
     if(!credential.password || credential.password.length < 8){
@@ -86,7 +86,7 @@ exports.localLogin = async function(req, res, next){
     const credential = req.body;
     try{
     console.log('local login'+req.body);        
-        const user = await User.findOne({email: credential.email}).exec();
+        const user = await User.findOne({emailAddr: credential.emailAddr}).exec();
         console.log(user);
         if(user && user.password === credential.password){
             return generateToken(res, user.userId);

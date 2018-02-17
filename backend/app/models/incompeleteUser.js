@@ -6,7 +6,7 @@ var incompleteUser = new Schema({
         unique: true,
         required: true
     },
-    email: {
+    emailAddr: {
         type: String
     },
     mobileNumber: {

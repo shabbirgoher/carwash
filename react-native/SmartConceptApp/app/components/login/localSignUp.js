@@ -70,7 +70,7 @@ export default class LocalSignUp extends Component{
     signUp = () => {
         this.setState({ errorMessage: '' });
         if(this.validateErrors() && this.validatePasswords()){
-            onLocalSignUp({email: this.state.emailAddr, mobileNumber: this.state.mobileNumber, password: this.state.password})
+            onLocalSignUp({emailAddr: this.state.emailAddr, mobileNumber: this.state.mobileNumber, password: this.state.password})
                 .then((response) => 
                     {
                         setJWT(response.token);

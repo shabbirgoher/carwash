@@ -48,7 +48,7 @@ export default class SocialSignUp extends Component{
         });
         onSignUp(
             this.state.jwtToken, 
-            {email: this.state.emailAddr, mobileNumber: this.state.mobileNumber}
+            {emailAddr: this.state.emailAddr, mobileNumber: this.state.mobileNumber}
         ).then((response) => {
             if(!response.token){
                 this.setState({

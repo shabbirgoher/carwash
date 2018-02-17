@@ -9,7 +9,7 @@ import users from './userService';
 const transformFacebookProfile = (profile) => ({
   facebook: profile.id,
   userName: profile.name,
-  email: profile.email
+  emailAddr: profile.email
 });
 
 const transformGoogleProfile = function (profile) {

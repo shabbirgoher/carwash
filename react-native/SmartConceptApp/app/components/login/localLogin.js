@@ -38,7 +38,7 @@ export default class LocalLogin extends Component {
             return;
         }
 
-        onLocalLogin({email: this.state.emailAddr, password: this.state.password})
+        onLocalLogin({emailAddr: this.state.emailAddr, password: this.state.password})
             .then((response) => {
                 setJWT(response.token);
                 this.props.onLogin('SignedIn');
