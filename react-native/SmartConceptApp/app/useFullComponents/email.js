@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {View} from 'react-native';
-import { 
+import React, { Component } from 'react';
+import { View } from 'react-native';
+import {
     FormLabel,
     FormInput,
     FormValidationMessage,
@@ -8,9 +8,9 @@ import {
 
 const emailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-export default class Email extends Component{
+export default class Email extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             emailAddr: '',
@@ -18,30 +18,30 @@ export default class Email extends Component{
         }
     }
 
+    validate(emailAddr) {
+        return emailReg.test(emailAddr);
+    }
+
     onEmailAddrChange = (emailAddr) => {
-        this.setState ({
+        this.setState({
             emailAddr: emailAddr
         });
-
-    }
-    onEndEditing = () => {
-        var error = true;
-        if (!emailReg.test(this.state.emailAddr)){
-            this.setState({
-                emailError: 'Invalid email address'
-            });
-            error = true;
+        if(this.validate(emailAddr)){
+            if (this.props.hasError) this.props.hasError(false, this.state.emailAddr);
         }
         else{
-            this.setState({
-                emailError: ''
-            });
-            error= false;
+            if (this.props.hasError) this.props.hasError(true, this.state.emailAddr);            
         }
-        if(this.props.hasError) this.props.hasError(error, this.state.emailAddr);
     }
 
-    render(){
+    onEndEditing = () => {
+        var msg = this.validate(this.state.emailAddr) ? '' : 'Invalid email address';
+        this.setState({
+            emailError: msg
+        });
+    }
+
+    render() {
         return (
             <View>
                 <FormLabel >Email Address</FormLabel>

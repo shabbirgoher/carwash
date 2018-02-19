@@ -21,6 +21,12 @@ export default class Passowrd extends Component {
         this.setState({
             password: password
         });
+        if (this.ValidatePassword(password)) {
+            if (this.props.hasError) this.props.hasError(false, password);
+        }
+        else {
+            if (this.props.hasError) this.props.hasError(true, password);
+        }
     }
 
     ValidatePassword(passowrd) {
@@ -28,20 +34,10 @@ export default class Passowrd extends Component {
     }
 
     onEndEditing = () => {
-        var error = true;
-        if (!this.ValidatePassword(this.state.password)) {
-            this.setState({
-                passwordError: 'Passowrd should be of minimum 8 characters.'
-            });
-            error = true;
-        }
-        else {
-            this.setState({
-                passwordError: ''
-            });
-            error = false;
-        }
-        if (this.props.hasError) this.props.hasError(error, this.state.password);
+        const msg = this.ValidatePassword(this.state.password) ? '' : 'Passowrd should be of minimum 8 characters'
+        this.setState({
+            passwordError: msg
+        });
     }
 
     render() {

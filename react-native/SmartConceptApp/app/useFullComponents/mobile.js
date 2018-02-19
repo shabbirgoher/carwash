@@ -10,33 +10,35 @@ export default class MobileNumber extends Component {
             mobileNumberError: ''
         }
     }
+    validate(text){
+        var numbers = '0123456789';
+        for (var i = 0; i < text.length; i++) {
+            if (numbers.indexOf(text[i]) < 0) {
+                return false;
+            }
+        }
+        if (text.length != 8) {
+            return false;       
+        }
+        return true;
+    }
     onMobileNumberChange = (mobileNumber) => {
         this.setState({
             mobileNumber: mobileNumber
         });
+        if(this.validate(mobileNumber)){
+            if (this.props.hasError) this.props.hasError(false, mobileNumber);
+        }
+        else{
+            if (this.props.hasError) this.props.hasError(true, mobileNumber);
+        }
     }
+    
     onEndEditing = () => {
-        var numbers = '0123456789';
-        let text = this.state.mobileNumber;
-        var error = false;
-        for (var i = 0; i < text.length; i++) {
-            if (numbers.indexOf(text[i]) < 0) {
-                error = true;
-            }
-        }
-        if (text.length != 8 || error) {
-            this.setState({
-                mobileNumberError: 'Invalid mobile number'
-            });
-            error = true;
-        }
-        else {
-            this.setState({
-                mobileNumberError: ''
-            });
-        }
-
-        if (this.props.hasError) this.props.hasError(error, this.state.mobileNumber);
+        const msg = this.validate(this.state.mobileNumber) ? '' : 'Invalid mobile number';
+        this.setState({
+            mobileNumberError: msg
+        });
     }
     render() {
         return (

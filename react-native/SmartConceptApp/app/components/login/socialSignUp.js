@@ -46,13 +46,17 @@ export default class SocialSignUp extends Component{
         this.setState({
             isLoading: true
         });
+        if(this.state.emailError || this.state.mobileNumberError){
+            this.setState({ errorMessage: 'Please correct above details' });
+            return;
+        }
         onSignUp(
             this.state.jwtToken, 
             {emailAddr: this.state.emailAddr, mobileNumber: this.state.mobileNumber}
         ).then((response) => {
             if(!response.token){
                 this.setState({
-                    errorMessage: 'Unable to signup. Please try again.',
+                    errorMessage: 'Unable to signup. Please try again',
                     isLoading: false
                 });
             }
@@ -76,7 +80,7 @@ export default class SocialSignUp extends Component{
                         backgroundColor="#03A9F4"
                         title="SIGN UP"
                         onPress={this.signUp}
-                        disabled= {this.state.isLoading || this.state.emailError || this.state.mobileNumberError}
+                        disabled= {this.state.isLoading}
                     />
                     <FormValidationMessage>{this.state.errorMessage}</FormValidationMessage>
                 </Card>
