@@ -4,7 +4,7 @@ exports.getConfirmationEmailTemplate = async function (appointment) {
     var toEmail;
     try {
         const user = await User.findOne({ userId: appointment.userId }).exec();
-        toEmail = user.email;
+        toEmail = user.emailAddr;
     }
     catch (err) {
         console.error('Unable to get user for userId: ' + appointment.userId + '::' + err);
@@ -18,6 +18,6 @@ exports.getConfirmationEmailTemplate = async function (appointment) {
     return {
         to: toEmail,
         subject: mailSubject,
-        text: mailText
+        html: mailText
     }
 }

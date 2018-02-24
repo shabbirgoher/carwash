@@ -27,10 +27,10 @@ export default class Email extends Component {
             emailAddr: emailAddr
         });
         if(this.validate(emailAddr)){
-            if (this.props.hasError) this.props.hasError(false, this.state.emailAddr);
+            if (this.props.hasError) this.props.hasError(false, emailAddr);
         }
         else{
-            if (this.props.hasError) this.props.hasError(true, this.state.emailAddr);            
+            if (this.props.hasError) this.props.hasError(true, emailAddr);            
         }
     }
 

@@ -1,35 +1,67 @@
-var nodemailer = require('nodemailer');
+var Mailgun = require('mailgun-js');
 
+import Mail from './../models/mail';
 import ConfirmationTemplate from './confirmationTemplate';
+const uuidv1 = require('uuid/v1');
 
 const emailFrom = process.env.EMAIL_FROM;
-const emailPwd = process.env.EMAIL_PWD;
+const api_key = process.env.EMAILGUN_API_KEY;
+const domain = process.env.EMAIL_DOMAIN;
+const sendEmail = process.env.SEND_EMAIL || false;
+const INITIATED = 'INITIATED';
+const FAILED = 'FAILED';
+const SUCCESS = 'SUCCESS';
+const DISABLED = 'DISABLED';
 
-var transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: emailFrom,
-        pass: emailPwd
-    }
-});
+const mailgun = new Mailgun({apiKey: api_key, domain: domain});
+
+async function saveMailInDb(mailOptions, type){
+    var mail = new Mail();
+    mail.mailId = uuidv1();
+    mail.emailAddr = mailOptions.to || 'UNKNOWN';
+    mail.emailType = type;
+    mail.emailStatus = INITIATED;
+    await saveEmail(mail);
+    return mail;
+}
 
 exports.sendConfirmationEmail = async function (mailObject) {
     let mailOptions = await ConfirmationTemplate.getConfirmationEmailTemplate(mailObject);
+    var mail = await saveMailInDb(mailOptions, 'CONFIRMATION');
     if(!mailOptions){
         console.error('mailoption not provided');
         return;
     }
-    sendMail(mailOptions);
+    sendMail(mailOptions, mail);
 }
 
-function sendMail(mailOptions){
+function sendMail(mailOptions, mail){
     mailOptions.from = emailFrom;
-    transporter.sendMail(mailOptions, function (error, info) {
-        if (error) {
-            console.error('unabele to send email :: ' + mailOptions)
-            console.error(error);
-        } else {
-            console.log('Email sent: ' + info.response);
+    if(!sendEmail){
+        console.log("Sending email is disabled");
+        mail.emailStatus = DISABLED;
+        saveEmail(mail);
+        return;
+    }
+    mailgun.messages().send(mailOptions, function (err, body) {
+        if (err) {
+            console.log("got an error: ", err);
+            mail.emailStatus = FAILED;
+            mail.emailResponse = err;
         }
+        else {
+            console.log(body);
+            mail.emailStatus = SUCCESS;
+        }
+        saveEmail(mail);
     });
+}
+
+async function saveEmail(mail){
+    try{
+        await mail.save();
+    }
+    catch(err){
+        console.log('Unable to save mail data');
+    }
 }

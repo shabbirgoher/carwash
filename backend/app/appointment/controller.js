@@ -42,7 +42,7 @@ exports.bookAppointment = function (req, res, next) {
                 console.error('Unable to save appointment :: '+err);
                 return res.status(500).send({message: 'Unable to save appointment'});
             }
-            //MailSender.sendConfirmationEmail(appointment);
+            MailSender.sendConfirmationEmail(appointment);
             return res.status(201).send({});
         }
     )(req, res, next);
