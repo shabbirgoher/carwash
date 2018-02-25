@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import NavigationBar from "./../navigationBar";
 import About from "./../about";
-
-const Home = () => <h1>Home</h1>
+import Home from "./../home";
+import OurGoal from "./../our-goal";
+import Contactus from "./../contact-us";
 
 const App = () => (
   <div>
@@ -15,6 +16,8 @@ const App = () => (
           <NavigationBar />
           <Route exact path="/" component={Home} />
           <Route path="/about" component={About} />
+          <Route path="/our-goal" component={OurGoal} />
+          <Route path="/contact-us" component={Contactus} />
         </div>
         <div style={{ flex: 1 }} />
       </div>
