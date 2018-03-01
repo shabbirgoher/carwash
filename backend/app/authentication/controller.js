@@ -85,7 +85,6 @@ exports.localSignUp = async function(req, res, next){
 exports.localLogin = async function(req, res, next){
     const credential = req.body;
     try{
-    console.log('local login'+req.body);        
         const user = await User.findOne({emailAddr: credential.emailAddr}).exec();
         console.log(user);
         if(user && user.password === credential.password){

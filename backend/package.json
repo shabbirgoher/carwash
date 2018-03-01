@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node_modules/nodemon/bin/nodemon.js -- node_modules/babel-cli/bin/babel-node.js index.js",
-    "local": "node_modules/nodemon/bin/nodemon.js --config config/config.local.json -- node_modules/babel-cli/bin/babel-node.js index.js",
+    "local": "node_modules/nodemon/bin/nodemon.js --config config/config.local.json -- node_modules/babel-cli/bin/babel-node.js --inspect index.js",
     "localaz": "node_modules/nodemon/bin/nodemon.js --config config/config.localaz.json -- node_modules/babel-cli/bin/babel-node.js index.js",
     "testaz": "node_modules/nodemon/bin/nodemon.js --config config/config.testaz.json -- node_modules/babel-cli/bin/babel-node.js index.js",
     "android": "node_modules/nodemon/bin/nodemon.js --config config/config.android.json -- node_modules/babel-cli/bin/babel-node.js --inspect index.js",

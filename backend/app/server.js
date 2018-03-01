@@ -14,6 +14,12 @@ app.use(function logErrors(err, req, res, next) {
 );
 mongoose.connect(process.env.MONGODB_URI);
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 require('./authentication').init(app);
 require('./secureModule').init(app);
 require('./appointment').init(app);

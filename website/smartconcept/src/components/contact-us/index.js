@@ -30,7 +30,7 @@ const ContactUs = () => (
                         </li>
                     </ul>
                 </div>
-                <div className="contact-address">
+                <div className="contact-address" style={{height: '224px'}}>
                     <OrgLocation />
                 </div>
             </div>
