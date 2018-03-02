@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Button, FormGroup, FormControl, ControlLabel, HelpBlock } from "react-bootstrap";
+import { Redirect } from "react-router-dom";
 
 import "./style.css";
 import { AuthService } from "./../../services/authService";
@@ -18,7 +19,8 @@ export default class Login extends Component {
             emailError: '',
             password: '',
             passwordError: '',
-            errorMessage: ''
+            errorMessage: '',
+            redirectToReferrer: false
         };
     }
 
@@ -45,7 +47,9 @@ export default class Login extends Component {
         event.preventDefault();
         AuthService.onLocalLogin({ emailAddr: this.state.email, password: this.state.password })
             .then((response) => {
-
+                this.setState({
+                    redirectToReferrer: true
+                });
             })
             .catch((err) => this.setState(
                 {
@@ -55,6 +59,13 @@ export default class Login extends Component {
     }
 
     render() {
+        const { from } = this.props.location.state || { from: { pathname: "/" } };
+        const { redirectToReferrer } = this.state;
+
+        if (redirectToReferrer) {
+            return <Redirect to={from} />;
+        }
+
         return (
             <div className="Login">
                 <form onSubmit={this.handleSubmit}>

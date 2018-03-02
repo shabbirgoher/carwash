@@ -7,6 +7,8 @@ import Home from "./../home";
 import OurGoal from "./../our-goal";
 import Contactus from "./../contact-us";
 import Login from "./../Login";
+import PrivateRoute from './../privateRoute';
+import NewAppointment from './../newAppointment';
 
 const App = () => (
   <div>
@@ -20,6 +22,7 @@ const App = () => (
           <Route path="/our-goal" component={OurGoal} />
           <Route path="/contact-us" component={Contactus} />
           <Route path="/login" exact component={Login} />
+          <PrivateRoute path="/new-appointment" component={NewAppointment} />
         </div>
         <div style={{ flex: 1 }} />
       </div>

@@ -24,8 +24,11 @@ export const AuthService = {
             })
             .then(handleErrors)
             .then((response) => {
-                localStorage.setItem(JWT_KEY, response.token)
+                localStorage.setItem(JWT_KEY, response.token);
                 return response;
             });
+    },
+    isAuthenticated: function(){
+        return localStorage.getItem(JWT_KEY);
     }
 }
