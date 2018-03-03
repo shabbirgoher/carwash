@@ -1,6 +1,14 @@
+.Login {
+  border: 0.5px solid black;
+  max-width: 320px;
+  float: right;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
 @media all and (min-width: 480px) {
     .Login {
-      padding: 60px 0;
+      /* padding: 60px 0; */
       display: flex;
       justify-content: flex-end;
     }

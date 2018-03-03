@@ -28,7 +28,26 @@ export const AuthService = {
                 return response;
             });
     },
+    onSignUp: function(object){
+        return fetch(
+            ServiceConfig.apiUrl + '/auth/localSignUp',
+            {
+                method: 'post',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(object),
+            })
+            .then(handleErrors)
+            .then((response) => {
+                localStorage.setItem(JWT_KEY, response.token);
+                return response;
+            });
+    },
     isAuthenticated: function(){
         return localStorage.getItem(JWT_KEY);
+    },
+    logOut: function(){
+        return localStorage.clear();
     }
 }

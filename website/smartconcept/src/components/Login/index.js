@@ -1,127 +1,51 @@
-import React, { Component } from "react";
-import { Button, FormGroup, FormControl, ControlLabel, HelpBlock } from "react-bootstrap";
-import { Redirect } from "react-router-dom";
+import React from "react";
+import { Route, Link } from "react-router-dom";
 
 import "./style.css";
-import { AuthService } from "./../../services/authService";
+import Login from './login';
+import Register from './register';
+import ForgotPassword from './forgotPassword';
 
-function InputalidationMessage({ message }) {
-    return (<HelpBlock style={{ color: 'red' }}>{message}</HelpBlock>);
-}
-const emailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-
-export default class Login extends Component {
-    constructor(props, context) {
-        super(props, context);
-
-        this.state = {
-            email: '',
-            emailError: '',
-            password: '',
-            passwordError: '',
-            errorMessage: '',
-            redirectToReferrer: false
-        };
-    }
-
-    handleEmailChange = event => {
-        const email = event.target.value;
-        const emailError = emailReg.test(email) ? '' : 'Invalid email address';
-        this.setState({
-            email: email,
-            emailError: emailError
-        });
-    }
-
-    handlePasswordChange = event => {
-        const password = event.target.value;
-        const passwordError = !password || password.length < 8 ? 'Passowrd should be of minimum 8 characters' : '';
-        this.setState({
-            password: password,
-            passwordError: passwordError
-        });
-    }
-
-    handleSubmit = event => {
-        this.setState({ errorMessage: '' })
-        event.preventDefault();
-        AuthService.onLocalLogin({ emailAddr: this.state.email, password: this.state.password })
-            .then((response) => {
-                this.setState({
-                    redirectToReferrer: true
-                });
-            })
-            .catch((err) => this.setState(
-                {
-                    errorMessage: err.message || 'Unable to login'
-                }
-            ));
-    }
-
-    render() {
-        const { from } = this.props.location.state || { from: { pathname: "/" } };
-        const { redirectToReferrer } = this.state;
-
-        if (redirectToReferrer) {
-            return <Redirect to={from} />;
-        }
-
-        return (
+const LoginScreen = ({ match }) => {
+    return (
             <div className="Login">
-                <form onSubmit={this.handleSubmit}>
-                    <FormGroup controlId="email" bsSize="large">
-                        <ul>
-                            <li>
-                                <ControlLabel>Email</ControlLabel>
-                            </li>
-                            <li>
-                                <FormControl
-                                    autoFocus
-                                    type="email"
-                                    value={this.state.email}
-                                    onChange={this.handleEmailChange}
-                                />
-                            </li>
-                            <li>
-                                <InputalidationMessage message={this.state.emailError} />
-                            </li>
-                        </ul>
-                    </FormGroup>
-                    <FormGroup controlId="password" bsSize="large">
-                        <ul>
-                            <li>
-                                <ControlLabel>Password</ControlLabel>
+                <ul style={HeaderCss}>
+                    <li style={LinkCss}>
+                        <Link to='/sign-in'>Sign In</Link>
+                    </li>
+                    <li style={LinkCss}>
+                        <Link to={`${match.url}/register`}>Register</Link>
+                    </li>
+                    <li style={LinkCss}>
+                        <Link to={`${match.url}/forgot-password`}>Forgot password</Link>
+                    </li>
+                </ul>
 
-                            </li>
-                            <li>
-                                <FormControl
-                                    value={this.state.password}
-                                    onChange={this.handlePasswordChange}
-                                    type="password"
-                                />
-                            </li>
-                            <li>
-                                <InputalidationMessage message={this.state.passwordError} />
-                            </li>
-                        </ul>
-                    </FormGroup>
-                    <ul>
-                        <li>
-                            <Button
-                                block
-                                bsSize="large"
-                                disabled={this.state.emailError || this.state.passwordError}
-                                type="submit"
-                            >
-                                Login
-                            </Button>
-                        </li>
-                        <li>
-                            <InputalidationMessage message={this.state.errorMessage} />
-                        </li>
-                    </ul>
-                </form>
+                <div>
+                    <Route exact path='/sign-in' component={Login} />
+                    <Route path='/sign-in/register' component={Register} />
+                    <Route path='/sign-in/forgot-password' component={ForgotPassword} />
+                </div>
             </div>
-        );
-    }
+
+    );
 }
+
+const HeaderCss = {
+    flex: 1,
+    flexDirection: 'row',
+    display: 'flex',
+    listStyleType: 'none',
+    justifyContent: 'center'
+}
+
+const LinkCss = {
+    flex: 1,
+    display: 'flex',
+    justifyContent: 'center',
+    border: '1px solid',
+    borderRadius: '5px',
+    alignItems: 'center',
+    textAlign: 'center'
+}
+export default LoginScreen;

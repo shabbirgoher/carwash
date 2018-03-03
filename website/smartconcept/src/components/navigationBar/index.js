@@ -10,13 +10,13 @@ const NavigationBar = () => {
         Component =
         <ul style={{ display: 'flex', flexDirection: 'row', listStyleType: 'none' }}>
             <li style={{ margin: 5 }}><Link to="/new-appointment">Book Appointment</Link></li>
+            <li style={{ margin: 5 }}><Link to="/sign-out">Sign Out</Link></li>
         </ul>;
     }
     else {
         Component =
             <ul style={{ display: 'flex', flexDirection: 'row', listStyleType: 'none' }}>
-                <li style={{ margin: 5 }}><Link to="/login">Login</Link></li>
-                <li style={{ margin: 5 }}><Link to="/register">Register</Link></li>
+                <li style={{ margin: 5 }}><Link to="/sign-in">Sign In</Link></li>
             </ul>;
     }
     return (

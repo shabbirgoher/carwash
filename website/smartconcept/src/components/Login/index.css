@@ -1,0 +1,24 @@
+.Login {
+    border: 0.5px solid black;
+    max-width: 320px;
+    float: right;
+    width: 100%;
+}
+
+@media all and (min-width: 480px) {
+    .Login {
+      padding: 60px 0;
+      display: flex;
+      justify-content: flex-end;
+    }
+  
+    .Login form {
+      flex: 1;
+      margin: 0;
+      max-width: 320px;
+    }
+
+    .Login input {
+      border-radius: 5px;
+    }
+}

@@ -6,7 +6,8 @@ import About from "./../about";
 import Home from "./../home";
 import OurGoal from "./../our-goal";
 import Contactus from "./../contact-us";
-import Login from "./../Login";
+import LoginScreen from "./../Login";
+import LogOut from "./../logOut";
 import PrivateRoute from './../privateRoute';
 import NewAppointment from './../newAppointment';
 
@@ -21,8 +22,9 @@ const App = () => (
           <Route path="/about" component={About} />
           <Route path="/our-goal" component={OurGoal} />
           <Route path="/contact-us" component={Contactus} />
-          <Route path="/login" exact component={Login} />
+          <Route path="/sign-in" component={LoginScreen} />
           <PrivateRoute path="/new-appointment" component={NewAppointment} />
+          <PrivateRoute path="/sign-out" component={LogOut} />
         </div>
         <div style={{ flex: 1 }} />
       </div>
