@@ -38,6 +38,10 @@ export default class Register extends Component {
         };
     }
 
+    componentWillMount(){
+        this.props.activate();
+    }
+
     handleEmailChange = event => {
         const email = event.target.value;
         const emailError = emailReg.test(email) ? '' : 'Invalid email address';
@@ -189,7 +193,7 @@ export default class Register extends Component {
                             disabled={this.hasError()}
                             type="submit"
                         >
-                            Login
+                            Sign Up
                             </Button>
                     </li>
                     <li>

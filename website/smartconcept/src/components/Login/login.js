@@ -22,6 +22,10 @@ export default class Login extends Component {
         };
     }
 
+    componentWillMount(){
+        this.props.activate();
+    }
+
     handleEmailChange = event => {
         const email = event.target.value;
         const emailError = emailReg.test(email) ? '' : 'Invalid email address';

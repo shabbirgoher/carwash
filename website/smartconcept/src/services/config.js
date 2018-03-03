@@ -1,3 +1,3 @@
 export const ServiceConfig = {
-    apiUrl: 'http://localhost:3000'
+    apiUrl: process.env.REACT_APP_SMART_CONCEPT_URL
 }

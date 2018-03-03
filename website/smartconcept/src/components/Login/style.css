@@ -50,3 +50,7 @@
     color: white;
     font-size: 14px;
 }
+
+.Login ul a {
+  text-decoration: none;
+}
