@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 
 import "./style.css";
 import { AuthService } from "./../../services/authService";
-import InputalidationMessage from './inputalidationMessage';
+import InputalidationMessage from './../inputalidationMessage';
 
 const emailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 function isNumeric(text) {
