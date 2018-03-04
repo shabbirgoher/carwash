@@ -102,12 +102,12 @@ exports.localLogin = async function(req, res, next){
 exports.regeneratePassword = function(req, res, next){
     const emailAddr = req.body.emailAddr;
     console.log("regenerating password :: " + emailAddr)
-    return res.sendStatus(200);
+    return res.status(200).send({});
 }
 
 exports.resetPassword = function(req, res, next){
     const reqBody = req.body;
-    console.log("old password :: " + reqBody.oldPassword + " new password :: " + reqBody.newPassword)
-    return res.sendStatus(200);
+    console.log("email " + reqBody.emailAddr + "old password :: " + reqBody.oldPassword + " new password :: " + reqBody.newPassword)
+    return res.status(200).send({token: 'dummyToken'});
 }
 

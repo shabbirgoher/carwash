@@ -49,5 +49,34 @@ export const AuthService = {
     },
     logOut: function(){
         return localStorage.clear();
+    },
+    onRegeneratePassword: function(object){
+        return fetch(
+            ServiceConfig.apiUrl + '/auth/regeneratePassword',
+            {
+                method: 'post',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(object),
+            })
+            .then(handleErrors);
+    },
+    onResetPassword: function(token, object){
+        return fetch(
+            ServiceConfig.apiUrl + '/auth/resetPassword',
+            {
+                method: 'post',
+                headers: {
+                    'content-type': 'application/json',
+                    'Authorization': token
+                },
+                body: JSON.stringify(object),
+            })
+            .then(handleErrors)
+            .then((response) => {
+                localStorage.setItem(JWT_KEY, response.token);
+                return response;
+            });
     }
 }

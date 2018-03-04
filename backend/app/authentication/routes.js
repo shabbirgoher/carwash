@@ -16,6 +16,7 @@ module.exports = function (app){
     // );
 
     app.post('/auth/socialSignUp', authController.socialSignUp)
+    app.post('/auth/regeneratePassword', authController.regeneratePassword)
     app.post('/auth/resetPassword', authController.resetPassword)
     app.post('/auth/localSignUp', authController.localSignUp)
     app.post('/auth/localLogin', authController.localLogin)

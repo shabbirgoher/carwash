@@ -96,7 +96,7 @@ export default class ForgotPassword extends Component {
         if(!this.validatePasswords()){
             return;
         }
-        onResetPassword(this.state.token, {oldPassword: this.state.oldPassword, newPassword: this.state.newPassword})
+        onResetPassword(this.state.token, {emailAddr: this.state.emailAddr, oldPassword: this.state.oldPassword, newPassword: this.state.newPassword})
             .then(() => this.props.onLogin('SignIn'))
             .catch((err) => this.setState(
                 { 
