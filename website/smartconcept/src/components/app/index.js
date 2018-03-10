@@ -11,22 +11,19 @@ import LogOut from "./../logOut";
 import PrivateRoute from './../privateRoute';
 import NewAppointment from './../newAppointment';
 
+import './App.css';
+
 const App = () => (
   <div>
     <Router>
       <div style={{ display: 'flex', width: '100%' }}>
-        <div style={{ flex: 1 }} />
-        <div style={{ flex: 6 }}>
+        <div style={{ flex: 1 }}>
           <NavigationBar />
           <Route exact path="/" component={Home} />
-          <Route path="/about" component={About} />
-          <Route path="/our-goal" component={OurGoal} />
-          <Route path="/contact-us" component={Contactus} />
           <Route path="/sign-in" component={LoginScreen} />
           <PrivateRoute path="/new-appointment" component={NewAppointment} />
           <PrivateRoute path="/sign-out" component={LogOut} />
         </div>
-        <div style={{ flex: 1 }} />
       </div>
     </Router>
   </div>
