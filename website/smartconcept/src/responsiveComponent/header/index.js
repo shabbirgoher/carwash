@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-import { Row, Col, Navbar, NavItem, Nav } from 'react-bootstrap';
+import { Row, Col, Navbar, NavItem, Nav, Image } from 'react-bootstrap';
 
 import './style.css';
 import Logo from './../../assets/images/company-logo.png';
 const Header = () => {
     return (
-        <Navbar fixedTop={true}>
+        <Navbar collapseOnSelect>
             <Row>
                 <Col xs={12}>
                     <Nav pullRight>
@@ -21,14 +21,14 @@ const Header = () => {
                 <Col xs={12} className="companyLabel">
                     <Navbar.Header>
                         <Navbar.Text>
-                            <img src={Logo} />
+                            <Image src={Logo} responsive/>
                         </Navbar.Text>
-                        <Navbar.Brand>
-                            <Navbar.Text >
+                        <Navbar.Text >
                                 <span>SMART CONCEPT</span>
-                            </Navbar.Text>
-                        </Navbar.Brand>
+                        </Navbar.Text>
+                        <Navbar.Toggle />
                     </Navbar.Header>
+                    <Navbar.Collapse>
                     <Nav pullRight>
                             <NavItem href="/">
                                 Home
@@ -37,6 +37,7 @@ const Header = () => {
                                 Book Now
                             </NavItem>
                     </Nav>
+                    </Navbar.Collapse>
                 </Col>
             </Row>
         </Navbar>
