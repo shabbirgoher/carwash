@@ -1,0 +1,85 @@
+
+.headerTel {
+    background: #DEFF4F;
+    font: normal normal normal 17px/1.4em lulo-clean-w01-one-bold,sans-serif;
+    padding: 15px;
+    padding: 15px;
+    margin: 0;
+}
+
+.headerTel span {
+    color: rgba(15, 147, 254, 1);
+}
+.companyLabel {
+    background-color: rgba(15, 147, 254, 1);
+}
+.companyLabel span, .navbar-default .navbar-nav > li > a {
+    font: normal normal normal 17px/1.4em lulo-clean-w01-one-bold,sans-serif;
+    transition: color 0.4s ease 0s;
+    color: #FFFFFF;
+    white-space: nowrap;
+    font-weight: bolder;
+}
+.companyLabel span:hover, .navbar-default .navbar-nav > li > a:hover {
+    color: #DEFF4F;
+    transition: color 0.4s ease 0s;
+}
+
+.companyLabel img {
+    width: 42px; 
+    height: 48px; 
+    object-fit: fill;
+}
+/* 
+.headerText span {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: #DEFF4F;
+    height: 100%;
+    width: 100%;
+    font: normal normal normal 17px/1.4em lulo-clean-w01-one-bold,sans-serif;
+    transition: color 0.4s ease 0s;
+    color: rgba(15, 147, 254, 1);
+    white-space: nowrap;
+    font-weight: bold;
+}
+
+.headerMenu {
+    background-color: rgba(15, 147, 254, 1);
+    height: 75px;
+
+}
+
+.headerMenuLeft {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+}
+
+.headerMenuRight {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+}
+
+.companyLabel {
+    font: normal normal normal 17px/1.4em lulo-clean-w01-one-bold,sans-serif;
+    transition: color 0.4s ease 0s;
+    color: #FFFFFF;
+    white-space: nowrap;
+    font-weight: bolder;
+}
+
+.headerMenuRight a{
+    text-decoration: none;
+}
+
+
+.headerMenu span:hover {
+    color: #DEFF4F;
+    transition: color 0.4s ease 0s;
+} */
