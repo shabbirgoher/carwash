@@ -24,8 +24,13 @@
     white-space: nowrap;
     font-weight: bolder;
 }
-.companyLabel span:hover, .navbar-default .navbar-nav > li > a:hover {
+.companyLabel span:hover, 
+.navbar-default .navbar-nav > li > a:hover, 
+.navbar-default .navbar-nav>.active>a, 
+.navbar-default .navbar-nav > .active > a:focus
+{
     color: #DEFF4F;
+    background-color: transparent;    
     transition: color 0.4s ease 0s;
 }
 
@@ -39,56 +44,10 @@
     margin: 0;
     border: 0;
 }
-/* 
-.headerText span {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background: #DEFF4F;
-    height: 100%;
-    width: 100%;
-    font: normal normal normal 17px/1.4em lulo-clean-w01-one-bold,sans-serif;
-    transition: color 0.4s ease 0s;
-    color: rgba(15, 147, 254, 1);
-    white-space: nowrap;
-    font-weight: bold;
-}
 
-.headerMenu {
-    background-color: rgba(15, 147, 254, 1);
-    height: 75px;
-
-}
-
-.headerMenuLeft {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 100%;
-}
-
-.headerMenuRight {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    justify-content: flex-end;
-    height: 100%;
-}
-
-.companyLabel {
-    font: normal normal normal 17px/1.4em lulo-clean-w01-one-bold,sans-serif;
-    transition: color 0.4s ease 0s;
-    color: #FFFFFF;
-    white-space: nowrap;
-    font-weight: bolder;
-}
-
-.headerMenuRight a{
-    text-decoration: none;
-}
-
-
-.headerMenu span:hover {
+.navbar-default .navbar-nav>.active>a, 
+.navbar-default .navbar-nav>.active>a:focus, 
+.navbar-default .navbar-nav>.active>a:hover{
+    background-color: transparent;
     color: #DEFF4F;
-    transition: color 0.4s ease 0s;
-} */
+}

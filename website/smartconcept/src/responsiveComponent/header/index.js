@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from "react-router-dom";
-
 import { Row, Col, Navbar, NavItem, Nav, Image } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+import { Link } from "react-router-dom";
 
 import './style.css';
 import Logo from './../../assets/images/company-logo.png';
@@ -21,22 +21,22 @@ const Header = () => {
                 <Col xs={12} className="companyLabel">
                     <Navbar.Header>
                         <Navbar.Text>
-                            <Image src={Logo} responsive/>
+                            <Image src={Logo} responsive />
                         </Navbar.Text>
                         <Navbar.Text >
-                                <span>SMART CONCEPT</span>
+                            <span>SMART CONCEPT</span>
                         </Navbar.Text>
                         <Navbar.Toggle />
                     </Navbar.Header>
                     <Navbar.Collapse>
-                    <Nav pullRight>
-                            <NavItem href="/">
-                                Home
-                            </NavItem>
-                            <NavItem href="/new-appointment">
-                                Book Now
-                            </NavItem>
-                    </Nav>
+                        <Nav pullRight>
+                            <LinkContainer exact to="/" activeStyle={{background: 'transparent'}}>
+                                <NavItem style={{backgroundColorx: 'transparent'}}>Home</NavItem>
+                            </LinkContainer>
+                            <LinkContainer exact to="/new-appointment" >
+                                <NavItem>Book Now</NavItem>
+                            </LinkContainer>
+                        </Nav>
                     </Navbar.Collapse>
                 </Col>
             </Row>

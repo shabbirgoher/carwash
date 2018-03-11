@@ -1,0 +1,30 @@
+.footer div {
+    margin: 0;
+    padding: 0;
+    background-color: rgba(15, 147, 254, 1);
+    color: #FFFFFF;
+}
+
+.footer section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: left;
+    word-wrap: break-word;
+}
+
+.footer h4 {
+    font-size: 36px;
+    margin: 20px 0;
+} 
+
+.footer h5{
+    font-size: 24px;
+    margin: 20px 0;
+}
+.footer p {
+    font-size: 16px;
+    margin: 20px 10px;
+    width: 70%;
+} 

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Row, Col, Image, Jumbotron, Carousel } from 'react-bootstrap';
 
+import ContactUs from './contact-us';
+
 import CleaningImg from './../../assets/images/cleaning.png';
 import CarWashImg from './../../assets/images/car-wash.png';
 import './style.css';
@@ -103,7 +105,7 @@ const Home = () => {
                                     </p>
                                 </Jumbotron>
                             </Col>
-                            <Col xs={1} md={2}/>
+                            <Col xs={1} md={2} />
                         </Carousel.Item>
                         <Carousel.Item >
                             <Col xs={1} md={2} />
@@ -119,6 +121,15 @@ const Home = () => {
                         </Carousel.Item>
 
                     </Carousel>
+                </Col>
+            </Row>
+            <Row>
+                <Col xs={12} >
+                    <Jumbotron className="home-container2">
+                        <h1>Contact Us for a free Quote!</h1>
+                        <ContactUs />
+                    </Jumbotron>
+
                 </Col>
             </Row>
         </div>
