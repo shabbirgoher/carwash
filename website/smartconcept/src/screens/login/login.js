@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, FormGroup, ControlLabel, FormControl, Glyphicon, InputGroup, Button } from 'react-bootstrap';
+import { Row, Col, FormGroup, FormControl, Glyphicon, InputGroup, Button } from 'react-bootstrap';
 import { Redirect } from "react-router-dom";
 
 import './style.css';
@@ -28,7 +28,7 @@ export default class Login extends Component {
     login = (event) => {
         this.setState({ errorMessage: '' });        
         event.preventDefault();
-        AuthService.onLocalLogin({ emailAddr: this.state.email, password: this.state.password })
+        AuthService.onLocalLogin({ emailAddr: this.state.emailAddr, password: this.state.password })
             .then((response) => {
                 this.setState({
                     redirectToReferrer: true

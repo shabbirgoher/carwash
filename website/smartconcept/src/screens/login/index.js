@@ -1,8 +1,9 @@
 import React from 'react';
-import { Route, Link, NavLink } from "react-router-dom";
-import { Row, Col, Button, Image } from 'react-bootstrap';
+import { Route, NavLink } from "react-router-dom";
+import { Row, Col, Button } from 'react-bootstrap';
 
 import Login from './login';
+import Register from './register';
 //import BackgroundImage from './../../assets/images/car-background.png'
 import './style.css';
 
@@ -31,7 +32,7 @@ const LoginScreen = ({ match }) => (
                 <div>
                     <div>
                         <Route exact path={`${match.url}/sign-in`} component={Login} />
-                        <Route path={`${match.url}/register`} component={Login} />
+                        <Route path={`${match.url}/register`} component={Register} />
                         <Route path={`${match.url}/forgot-password`} component={Login} />
                     </div>
                     <ul class="list-unstyled">
