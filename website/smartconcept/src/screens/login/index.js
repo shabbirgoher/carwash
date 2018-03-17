@@ -4,6 +4,7 @@ import { Row, Col, Button } from 'react-bootstrap';
 
 import Login from './login';
 import Register from './register';
+import ForgotPassword from './forgot-password';
 //import BackgroundImage from './../../assets/images/car-background.png'
 import './style.css';
 
@@ -27,15 +28,15 @@ const LoginScreen = ({ match }) => (
     <Col xs={12} className="login-container" style={styles.container}>
         {/* <Image src={BackgroundImage} responsive style={{width: '100%', height: '100%'}}/> */}
         <Row className="login-container-row">
-            <Col md={4} />
-            <Col md={4} >
+            <Col md={4} xs={0}/>
+            <Col md={4} xs={12}>
                 <div>
                     <div>
                         <Route exact path={`${match.url}/sign-in`} component={Login} />
                         <Route path={`${match.url}/register`} component={Register} />
-                        <Route path={`${match.url}/forgot-password`} component={Login} />
+                        <Route path={`${match.url}/forgot-password`} component={ForgotPassword} />
                     </div>
-                    <ul class="list-unstyled">
+                    <ul className="list-unstyled">
                         <li>
                             <LinkButton to={`${match.url}/sign-in`} text="Sign In" />
                         </li>
@@ -48,7 +49,7 @@ const LoginScreen = ({ match }) => (
                     </ul>
                 </div>
             </Col>
-            <Col md={4} />
+            <Col md={4} xs={0}/>
         </Row>
     </Col>
 )

@@ -99,7 +99,8 @@ export default class Register extends Component {
                                 </FormGroup>
                                 <FormGroup controlId="userName" validationState={this.getMobileNumberValidationState()}>
                                     <InputGroup className="login-input">
-                                        <InputGroup.Addon><Glyphicon glyph="user" /></InputGroup.Addon>
+                                        <InputGroup.Addon><Glyphicon glyph="phone" /></InputGroup.Addon>
+                                        <InputGroup.Addon>+968</InputGroup.Addon>
                                         <FormControl type="text" placeholder="Mobile number" className="input-box" onChange={event => this.setState({ mobileNumber: event.target.value })} />
                                     </InputGroup>
                                     <FormControl.Feedback />

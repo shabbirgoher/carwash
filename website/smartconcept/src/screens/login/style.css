@@ -7,7 +7,7 @@
 .login-container-row{
     /* position: absolute; */
     top: 20%;
-    padding: 20px;
+    padding: 20px 10px;
 }
 .login-container div{
     display: flex;
@@ -30,7 +30,7 @@
     border-radius: 20px;
     outline: transparent;
     color: inherit;
-    transition: color 0.1s Sine 0s;    
+    transition: color 0.1s Sine 0s;
 }
 
 .login-container a {
@@ -50,4 +50,13 @@
 }
 .login-input input:focus {
     outline:none;
-}   
+}
+
+.login-container button[type="submit"]{
+    background-color: rgba(15, 147, 254, 1);
+    color: #DEFF4F;
+}
+.login-container button[type="submit"]:disabled{
+    background-color: transparent;
+    color: rgba(15, 147, 254, 1);
+}
