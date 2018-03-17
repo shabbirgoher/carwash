@@ -23,6 +23,11 @@
 .home-container1-text h1 {
     margin-bottom: 10px;
 }
+.home-container2 h4{
+    font-style: italic;
+    font-weight: bolder;
+    margin-bottom: 5px;
+}
 @media all and (max-width: 900px) {
     .home-container1-text{
         width: 90%;

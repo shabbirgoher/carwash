@@ -23,7 +23,8 @@ const Home = () => {
             <Row>
                 <Col xs={12} >
                     <Jumbotron className="home-container2">
-                        <h4>Call Now  123-456-7890</h4>
+                        <h4>Save Water, Give Water</h4>
+                        <h5>With every wash Smart Concept saves water for those in need</h5>
                     </Jumbotron>
                 </Col>
             </Row>
