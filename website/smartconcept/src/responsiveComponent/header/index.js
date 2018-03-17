@@ -9,15 +9,15 @@ const Header = () => {
         <div>
             <Navbar>
                 <Nav pullRight>
-                    <Navbar.Text className="headerTel">
-                        <span>123-456-7890</span>
-                    </Navbar.Text>
+                    <NavItem className="headerTel">
+                            <span>123-456-7890</span>
+                    </NavItem>
                 </Nav>
             </Navbar>
             <Navbar collapseOnSelect className="companyLabel">
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <Image src={Logo} responsive/>
+                        <Image src={Logo} responsive />
                         <span>SMART CONCEPT</span>
                     </Navbar.Brand>
                     <Navbar.Toggle />
