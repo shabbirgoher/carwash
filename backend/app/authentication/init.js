@@ -5,6 +5,7 @@ import GoogleStrategy from 'passport-google-oauth20';
 import { facebook, google, jwtOptions } from './config';
 import PassportJwt from 'passport-jwt';
 import users from './userService';
+import ForgotPassword from './../models/forgotPassword';
 
 const transformFacebookProfile = (profile) => ({
   facebook: profile.id,
@@ -32,6 +33,15 @@ passport.use('jwt', new PassportJwt.Strategy(jwtOptions,
 passport.use('tempJwt', new PassportJwt.Strategy(jwtOptions,
   async function (payload, done) {
     let user = await users.getTempUserById(payload.sub);
+    if (user) {
+      return done(null, user, payload);
+    }
+    return done();
+  }));
+
+passport.use('reset-pwd-jwt', new PassportJwt.Strategy(jwtOptions,
+  async function (payload, done) {
+    let user = await ForgotPassword.findOne({id: payload.sub});
     if (user) {
       return done(null, user, payload);
     }
