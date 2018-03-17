@@ -40,27 +40,19 @@ const Home = () => {
                                     <Col xs={0} md={2} />
                                     <Col xs={6} md={2} style={{ display: 'flex' }}>
                                         <div className="line-seperator" />
-                                        <h4>
-                                            Certified Professional Cleaners
-                                    </h4>
+                                        <h4>Complete Water-Less Solution</h4>
                                     </Col>
                                     <Col xs={6} md={2} style={{ display: 'flex' }}>
                                         <div className="line-seperator" />
-                                        <h4>
-                                            Environmentally Friendly Cleaning
-                                    </h4>
+                                        <h4>Environmentally Friendly Cleaning</h4>
                                     </Col>
                                     <Col xs={6} md={2} style={{ display: 'flex' }}>
                                         <div className="line-seperator" />
-                                        <h4>
-                                            100% Satisfaction Guaranteed
-                                    </h4>
+                                        <h4>Parking Lots Remains Clean, Stain-Free & Dry</h4>
                                     </Col>
                                     <Col xs={6} md={2} style={{ display: 'flex' }}>
                                         <div className="line-seperator" />
-                                        <h4>
-                                            Available Evenings & Weekends
-                                    </h4>
+                                        <h4>Available At Your Premises</h4>
                                     </Col>
                                     <Col xs={0} md={2} />
                                 </Row>
