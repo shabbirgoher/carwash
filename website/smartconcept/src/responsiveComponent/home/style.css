@@ -13,7 +13,7 @@
     text-align: center;
     font: bolder normal normal 64px lulo-clean-w01-one-bold,sans-serif;
     position: absolute;
-    color:  rgba(15, 147, 254, 1);
+    color: #DEFF4F;
     font-weight: bolder;
     top: 40%;
     left: 50%;
@@ -25,11 +25,11 @@
 }
 @media all and (max-width: 900px) {
     .home-container1-text{
-        width: 70%;
+        width: 90%;
     }
 
     .home-container1-text h1 {
-        font-size: 24px;
+        font-size: 36px;
     }
     .home-container1-text h3 {
         font-size: 20px;
