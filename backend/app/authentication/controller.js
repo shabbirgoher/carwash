@@ -4,6 +4,7 @@ const uuidv1 = require('uuid/v1');
 import { generateAccessToken } from './token'
 import User from './../models/user'
 import ForgotPassword from './../models/forgotPassword';
+import MailSender from './../email/sender';
 
 const emailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
@@ -113,6 +114,7 @@ exports.regeneratePassword = async function (req, res, next) {
     forgotPasswordSchema.id = uuidv1();
     const password = Math.floor(Math.random() * 9000000000) + 1000000000;
     forgotPasswordSchema.password = password;
+    MailSender.sendForgotPasswordEmail(forgotPasswordSchema);
     await forgotPasswordSchema.save();
     return generateToken(res, forgotPasswordSchema.id);
 }

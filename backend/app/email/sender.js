@@ -2,6 +2,7 @@ var Mailgun = require('mailgun-js');
 
 import Mail from './../models/mail';
 import ConfirmationTemplate from './confirmationTemplate';
+import ForgotPasswordTemplate from './forgotPssswordTemplate';
 const uuidv1 = require('uuid/v1');
 
 const emailFrom = process.env.EMAIL_FROM;
@@ -13,9 +14,9 @@ const FAILED = 'FAILED';
 const SUCCESS = 'SUCCESS';
 const DISABLED = 'DISABLED';
 
-const mailgun = new Mailgun({apiKey: api_key, domain: domain});
+const mailgun = new Mailgun({ apiKey: api_key, domain: domain });
 
-async function saveMailInDb(mailOptions, type){
+async function saveMailInDb(mailOptions, type) {
     var mail = new Mail();
     mail.mailId = uuidv1();
     mail.emailAddr = mailOptions.to || 'UNKNOWN';
@@ -28,16 +29,26 @@ async function saveMailInDb(mailOptions, type){
 exports.sendConfirmationEmail = async function (mailObject) {
     let mailOptions = await ConfirmationTemplate.getConfirmationEmailTemplate(mailObject);
     var mail = await saveMailInDb(mailOptions, 'CONFIRMATION');
-    if(!mailOptions){
+    if (!mailOptions) {
         console.error('mailoption not provided');
         return;
     }
     sendMail(mailOptions, mail);
 }
 
-function sendMail(mailOptions, mail){
+exports.sendForgotPasswordEmail = async function (forgotPasswordObj) {
+    let mailOptions = await ForgotPasswordTemplate.get(forgotPasswordObj);
+    var mail = await saveMailInDb(mailOptions, 'FORGOT_PWD');
+    if (!mailOptions) {
+        console.error('mailoption not provided');
+        return;
+    }
+    sendMail(mailOptions, mail);
+}
+
+function sendMail(mailOptions, mail) {
     mailOptions.from = emailFrom;
-    if(!sendEmail){
+    if (!sendEmail) {
         console.log("Sending email is disabled");
         mail.emailStatus = DISABLED;
         saveEmail(mail);
@@ -57,11 +68,11 @@ function sendMail(mailOptions, mail){
     });
 }
 
-async function saveEmail(mail){
-    try{
+async function saveEmail(mail) {
+    try {
         await mail.save();
     }
-    catch(err){
+    catch (err) {
         console.log('Unable to save mail data');
     }
 }
