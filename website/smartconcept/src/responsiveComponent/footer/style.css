@@ -23,8 +23,8 @@
     font-size: 24px;
     margin: 20px 0;
 }
-.footer p {
+.footer p, hr {
     font-size: 16px;
     margin: 20px 10px;
     width: 70%;
-} 
+}

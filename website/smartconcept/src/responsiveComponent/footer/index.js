@@ -22,7 +22,9 @@ const Footer = () => {
                             <h5>Head Office</h5>
                             <p>
                                 500 Terry Francois Street San Francisco, CA 94158
-                                <hr />
+                            </p>
+                            <hr />
+                            <p>
                                 123-456-7890
                                 <br />
                                 info@smartconceptinternational.com
@@ -34,7 +36,9 @@ const Footer = () => {
                             <h5>Operating Hours</h5>
                             <p>
                                 500 Terry Francois Street San Francisco, CA 94158
-                                <hr />
+                            </p>
+                            <hr />
+                            <p>
                                 123-456-7890
                                 <br />
                                 info@smartconceptinternational.com
