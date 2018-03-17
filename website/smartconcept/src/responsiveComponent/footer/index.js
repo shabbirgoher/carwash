@@ -13,7 +13,7 @@ const Footer = () => {
                         <section>
                             <h4>Our Company</h4>
                             <p>
-                                I'm a paragraph. Click here to add your own text and edit me. I’m a great place for you to tell a story and let your users know a little more about you.
+                                Smart Concept International is a premium Water less car cleaning services. We stand apart due to our focus on innovation, convenience & Eco-friendly practices. Through our proven method we are able to safely remove dirt, grime, and tar without harming your vehicle’s paint.
                             </p>
                         </section>
                     </Col>
