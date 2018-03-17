@@ -115,7 +115,9 @@
     justify-content: center;
     flex-direction: column;  
 }
-
+.home-container3-row div{
+    padding: 0;
+}
 .home-container3-row h4{
     margin: 10px;
     text-align: left;

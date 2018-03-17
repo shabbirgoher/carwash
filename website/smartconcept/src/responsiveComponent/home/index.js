@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Image, Jumbotron, Carousel } from 'react-bootstrap';
+import { Row, Col, Image, Jumbotron } from 'react-bootstrap';
 
 import ContactUs from './contact-us';
 
@@ -44,11 +44,11 @@ const Home = () => {
                                     </Col>
                                     <Col xs={6} md={2} style={{ display: 'flex' }}>
                                         <div className="line-seperator" />
-                                        <h4>Environmentally Friendly Cleaning</h4>
+                                        <h4>Environment Friendly Cleaning</h4>
                                     </Col>
                                     <Col xs={6} md={2} style={{ display: 'flex' }}>
                                         <div className="line-seperator" />
-                                        <h4>Parking Lots Remains Clean, Stain-Free & Dry</h4>
+                                        <h4>Parking Lot Remains Clean, Stain-Free & Dry</h4>
                                     </Col>
                                     <Col xs={6} md={2} style={{ display: 'flex' }}>
                                         <div className="line-seperator" />
@@ -71,49 +71,6 @@ const Home = () => {
                         </div>
                     </Jumbotron>
 
-                </Col>
-            </Row>
-            <Row style={{ backgroundColor: '#DEFF4F' }}>
-                <Col xs={12} className="home-container5">
-                    <Carousel>
-                        <Carousel.Item >
-                            <Col xs={1} md={2} />
-                            <Col xs={10} md={8}>
-                                <Jumbotron>
-                                    <h5>Nicole Garcia</h5>
-                                    <p>
-                                        “I'm a testimonial. Click to edit me and add text that says something nice about you and your services. Let your customers review you and tell their friends how great you are.”
-                                    </p>
-                                </Jumbotron>
-                            </Col>
-                            <Col xs={1} md={2} />
-                        </Carousel.Item>
-                        <Carousel.Item >
-                            <Col xs={1} md={2} />
-                            <Col xs={10} md={8}>
-                                <Jumbotron>
-                                    <h5>Christopher Davis</h5>
-                                    <p>
-                                        “I'm a testimonial. Click to edit me and add text that says something nice about you and your services. Let your customers review you and tell their friends how great you are.”
-                                    </p>
-                                </Jumbotron>
-                            </Col>
-                            <Col xs={1} md={2} />
-                        </Carousel.Item>
-                        <Carousel.Item >
-                            <Col xs={1} md={2} />
-                            <Col xs={10} md={8}>
-                                <Jumbotron>
-                                    <h5>Robert Harris</h5>
-                                    <p>
-                                        “I'm a testimonial. Click to edit me and add text that says something nice about you and your services. Let your customers review you and tell their friends how great you are.”
-                                    </p>
-                                </Jumbotron>
-                            </Col>
-                            <Col xs={1} md={2} />
-                        </Carousel.Item>
-
-                    </Carousel>
                 </Col>
             </Row>
             <Row>
