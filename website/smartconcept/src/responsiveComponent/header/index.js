@@ -17,7 +17,7 @@ const Header = () => {
             <Navbar collapseOnSelect className="companyLabel">
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <Image src={Logo}/>
+                        <Image src={Logo} responsive/>
                         <span>SMART CONCEPT</span>
                     </Navbar.Brand>
                     <Navbar.Toggle />

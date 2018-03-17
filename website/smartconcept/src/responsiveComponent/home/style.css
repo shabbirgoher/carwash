@@ -4,23 +4,28 @@
     display: flex;
     align-items: flex-start;
     margin-bottom: 5px;
+    padding: 0px;
+}
+.homeContaint1 img {
+    width: 100%;
 }
 .home-container1-text {
     text-align: center;
     font: bolder normal normal 64px lulo-clean-w01-one-bold,sans-serif;
     position: absolute;
-    color: #FFFFFF;
+    color:  rgba(15, 147, 254, 1);
     font-weight: bolder;
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
+    word-wrap: break-word;
 }
 .home-container1-text h1 {
     margin-bottom: 10px;
 }
 @media all and (max-width: 900px) {
     .home-container1-text{
-        width: 100%;
+        width: 70%;
     }
 
     .home-container1-text h1 {
