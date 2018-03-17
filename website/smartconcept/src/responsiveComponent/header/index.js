@@ -6,40 +6,34 @@ import './style.css';
 import Logo from './../../assets/images/company-logo.png';
 const Header = () => {
     return (
-        <Navbar collapseOnSelect>
-            <Row>
-                <Col xs={12}>
+        <div>
+            <Navbar>
+                <Nav pullRight>
+                    <Navbar.Text className="headerTel">
+                        <span>123-456-7890</span>
+                    </Navbar.Text>
+                </Nav>
+            </Navbar>
+            <Navbar collapseOnSelect className="companyLabel">
+                <Navbar.Header>
+                    <Navbar.Brand>
+                        <img src={Logo} style={{display: 'inline-block'}}  className="img-fluid"/>
+                        <span style={{display: 'inline-bloc'}}>SMART CONCEPT</span>
+                    </Navbar.Brand>
+                    <Navbar.Toggle />
+                </Navbar.Header>
+                <Navbar.Collapse>
                     <Nav pullRight>
-                        <Navbar.Text className="headerTel">
-                            <span>123-456-7890</span>
-                        </Navbar.Text>
+                        <LinkContainer exact to="/" activeStyle={{ background: 'transparent' }}>
+                            <NavItem style={{ backgroundColorx: 'transparent' }}>Home</NavItem>
+                        </LinkContainer>
+                        <LinkContainer exact to="/new-appointment" >
+                            <NavItem>Book Now</NavItem>
+                        </LinkContainer>
                     </Nav>
-                </Col>
-            </Row>
-            <Row>
-                <Col xs={12} className="companyLabel">
-                    <Navbar.Header>
-                        <Navbar.Text>
-                            <Image src={Logo} responsive />
-                        </Navbar.Text>
-                        <Navbar.Text >
-                            <span>SMART CONCEPT</span>
-                        </Navbar.Text>
-                        <Navbar.Toggle />
-                    </Navbar.Header>
-                    <Navbar.Collapse>
-                        <Nav pullRight>
-                            <LinkContainer exact to="/" activeStyle={{background: 'transparent'}}>
-                                <NavItem style={{backgroundColorx: 'transparent'}}>Home</NavItem>
-                            </LinkContainer>
-                            <LinkContainer exact to="/new-appointment" >
-                                <NavItem>Book Now</NavItem>
-                            </LinkContainer>
-                        </Nav>
-                    </Navbar.Collapse>
-                </Col>
-            </Row>
-        </Navbar>
+                </Navbar.Collapse>
+            </Navbar>
+        </div>
     );
 }
 

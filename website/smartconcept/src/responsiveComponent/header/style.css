@@ -6,25 +6,28 @@
     padding: 15px;
     margin: 0;
 }
-.navbar-header {
+/* .navbar-header {
     display: flex;
     justify-content: center;
     align-items: center;
-}
+} */
 .headerTel span {
     color: rgba(15, 147, 254, 1);
 }
 .companyLabel {
     background-color: rgba(15, 147, 254, 1);
 }
-.companyLabel span, .navbar-default .navbar-nav > li > a {
+.navbar-default .navbar-brand,
+.navbar-default .navbar-nav > li > a {
     font: normal normal normal 17px/1.4em lulo-clean-w01-one-bold,sans-serif;
     transition: color 0.4s ease 0s;
     color: #FFFFFF;
     white-space: nowrap;
     font-weight: bolder;
+    border-radius: 0 px;
 }
-.companyLabel span:hover, 
+.navbar-default .navbar-brand:focus, 
+.navbar-default .navbar-brand:hover, 
 .navbar-default .navbar-nav > li > a:hover, 
 .navbar-default .navbar-nav>.active>a, 
 .navbar-default .navbar-nav > .active > a:focus
@@ -34,15 +37,24 @@
     transition: color 0.4s ease 0s;
 }
 
-.companyLabel img {
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.navbar-brand>img {
     width: 42px; 
     height: 48px; 
     object-fit: fill;
+    margin-right: 5px; 
 }
 
 .navbar {
     margin: 0;
     border: 0;
+    border-radius: 0px;
 }
 
 .navbar-default .navbar-nav>.active>a, 
