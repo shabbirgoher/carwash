@@ -17,6 +17,11 @@
 .companyLabel {
     background-color: rgba(15, 147, 254, 1);
 }
+
+.companyLabel span {
+    transition: color 0.4s ease 0s;
+    color: #FFFFFF;
+}
 .navbar-default .navbar-brand,
 .navbar-default .navbar-nav > li > a {
     font: normal normal normal 17px/1.4em lulo-clean-w01-one-bold,sans-serif;

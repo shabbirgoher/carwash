@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Navbar, NavItem, Nav, Image } from 'react-bootstrap';
+import { Navbar, NavItem, Nav, Image } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
 import './style.css';
@@ -17,8 +17,8 @@ const Header = () => {
             <Navbar collapseOnSelect className="companyLabel">
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <img src={Logo} style={{display: 'inline-block'}}  className="img-fluid"/>
-                        <span style={{display: 'inline-bloc'}}>SMART CONCEPT</span>
+                        <Image src={Logo}/>
+                        <span>SMART CONCEPT</span>
                     </Navbar.Brand>
                     <Navbar.Toggle />
                 </Navbar.Header>
