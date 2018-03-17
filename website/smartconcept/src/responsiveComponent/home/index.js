@@ -16,7 +16,7 @@ const Home = () => {
                     <Image src={CleaningImg} responsive />
                     <div className="home-container1-text">
                         <h1>GIVE YOUR CAR SOME SHINE</h1>
-                        <h3>Reliable car cleaning professionals serving Oman</h3>
+                        <h3>WATER-LESS CAR CLEANING PROFESSIONALS SERVING OMAN</h3>
                     </div>
                 </Col>
             </Row>
