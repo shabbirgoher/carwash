@@ -30,8 +30,12 @@ export default class Register extends Component {
             passwordRetype: '',
             mobileNumber: '',
             errorMessage: '',
-            redirectToReferrer: false
+            redirectToReferrer: false,
+            loading: true
         }
+    }
+    componentDidMount() {
+        this.setState({ loading: false });
     }
     getUserNameValidationState = () => {
         const emailAddr = this.state.emailAddr;
@@ -55,26 +59,15 @@ export default class Register extends Component {
     }
 
     register = (event) => {
-        this.setState({ errorMessage: '' });
+        this.setState({ errorMessage: '', loading: true });
         event.preventDefault();
         if (this.hasError(this.getUserNameValidationState) || this.hasError(this.getMobileNumberValidationState) || this.hasError(this.getPasswordValidationState) || this.hasError(this.getPasswordRetypeValidationState)) {
-            this.setState(
-                {
-                    errorMessage: 'Please correct the above details'
-                });
-                return;
+            this.setState({ errorMessage: 'Please correct the above details', loading: false });
+            return;
         }
         AuthService.onSignUp({ emailAddr: this.state.emailAddr, password: this.state.password, mobileNumber: this.state.mobileNumber })
-            .then((response) => {
-                this.setState({
-                    redirectToReferrer: true
-                });
-            })
-            .catch((err) => this.setState(
-                {
-                    errorMessage: err.message || 'Unable to register'
-                }
-            ));
+            .then((response) => this.setState({ redirectToReferrer: true, loading: false }))
+            .catch((err) => this.setState({ errorMessage: err.message || 'Unable to register', loading: false }));
     }
     render() {
         const { from } = this.props.location.state || { from: { pathname: "/" } };
@@ -124,7 +117,7 @@ export default class Register extends Component {
                         <Row style={{ display: 'block' }}>
                             <Col xs={8} />
                             <Col xs={4} >
-                                <Button type="submit">Done</Button>
+                                <Button type="submit" disabled={this.state.loading}>Done</Button>
                             </Col>
                             <Col xs={12}>
                                 <InputalidationMessage message={this.state.errorMessage} />

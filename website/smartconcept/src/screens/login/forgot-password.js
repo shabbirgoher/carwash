@@ -7,18 +7,6 @@ import { AuthService } from "./../../services/authService";
 import InputalidationMessage from './../../components/inputalidationMessage';
 
 const emailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-function isNumeric(text) {
-    var numbers = '0123456789';
-    for (var i = 0; i < text.length; i++) {
-        if (numbers.indexOf(text[i]) < 0) {
-            return false;
-        }
-    }
-    if (text.length !== 8) {
-        return false;
-    }
-    return true;
-}
 const SubmitButton = ({ text, disabled }) => <Row style={{ display: 'block' }}>
     <Col md={8} xs={6} />
     <Col md={4} xs={6}>
@@ -91,12 +79,6 @@ export default class ForgotPassword extends Component {
     render() {
         const { from } = this.props.location.state || { from: { pathname: "/" } };
         const { redirect } = this.state;
-        const RegeneratePasswordButton = this.state.enterNewPassword
-            ? null
-            : <Button type="submit">Done</Button>;
-        const ResetPasswordButton = this.state.enterNewPassword
-            ? <Button type="submit">Done</Button>
-            : null;
 
         if (redirect) {
             return <Redirect to={from} />;

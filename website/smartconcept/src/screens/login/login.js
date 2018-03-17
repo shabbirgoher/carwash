@@ -10,14 +10,18 @@ const emailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 export default class Login extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state={
+        this.state = {
             emailAddr: '',
             password: '',
             errorMessage: '',
-            redirectToReferrer: false
+            redirectToReferrer: false,
+            loading: true
         }
+    }
+    componentDidMount() {
+        this.setState({ loading: false });
     }
     getUserNameValidationState = () => {
         return emailReg.test(this.state.emailAddr) ? 'success' : 'error'
@@ -26,19 +30,11 @@ export default class Login extends Component {
         return !this.state.password || this.state.password.length < 8 ? 'error' : 'success'
     }
     login = (event) => {
-        this.setState({ errorMessage: '' });        
+        this.setState({ errorMessage: '', loading: true });
         event.preventDefault();
         AuthService.onLocalLogin({ emailAddr: this.state.emailAddr, password: this.state.password })
-            .then((response) => {
-                this.setState({
-                    redirectToReferrer: true
-                });
-            })
-            .catch((err) => this.setState(
-                {
-                    errorMessage: err.message || 'Unable to login'
-                }
-            ));
+            .then((response) => this.setState({ redirectToReferrer: true, loading: false }))
+            .catch((err) => this.setState({ errorMessage: err.message || 'Unable to login', loading: false }));
     }
     render() {
         const { from } = this.props.location.state || { from: { pathname: "/" } };
@@ -57,26 +53,26 @@ export default class Login extends Component {
                                 <FormGroup controlId="userName" validationState={this.getUserNameValidationState()}>
                                     <InputGroup className="login-input">
                                         <InputGroup.Addon><Glyphicon glyph="user" /></InputGroup.Addon>
-                                        <FormControl type="text" placeholder="Email address" className="input-box" onChange={event => this.setState({emailAddr: event.target.value})}/>
+                                        <FormControl type="text" placeholder="Email address" className="input-box" onChange={event => this.setState({ emailAddr: event.target.value })} />
                                     </InputGroup>
                                     <FormControl.Feedback />
                                 </FormGroup>
                                 <FormGroup controlId="password" validationState={this.getPasswordValidationState()}>
                                     <InputGroup className="login-input">
                                         <InputGroup.Addon><Glyphicon glyph="lock" /></InputGroup.Addon>
-                                        <FormControl type="password" placeholder="Password" onChange={event => this.setState({password: event.target.value})}/>
+                                        <FormControl type="password" placeholder="Password" onChange={event => this.setState({ password: event.target.value })} />
                                     </InputGroup>
                                     <FormControl.Feedback />
                                 </FormGroup>
                             </Col>
                         </Row>
-                        <Row style={{display: 'block'}}>
-                            <Col xs={8}/>
+                        <Row style={{ display: 'block' }}>
+                            <Col xs={8} />
                             <Col xs={4} >
-                                <Button type="submit">Done</Button>
+                                <Button type="submit" disabled={this.state.loading}>Done</Button>
                             </Col>
                             <Col xs={12}>
-                                    <InputalidationMessage message={this.state.errorMessage} />
+                                <InputalidationMessage message={this.state.errorMessage}/>
                             </Col>
                         </Row>
                     </form>
