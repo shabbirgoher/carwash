@@ -4,7 +4,13 @@ import { Row, Col, Image, Jumbotron } from 'react-bootstrap';
 import ContactUs from './contact-us';
 
 import CleaningImg from './../../assets/images/cleaning.png';
-import CarWashImg from './../../assets/images/car-wash.png';
+import Services1Img from './../../assets/images/service-trolley.png';
+import Services2Img from './../../assets/images/service-tyre-polish.png';
+import Services3Img from './../../assets/images/service-rim.png';
+import Services4Img from './../../assets/images/service-body-polish.png';
+import Services5Img from './../../assets/images/service-micro-fiber.png';
+import Services6Img from './../../assets/images/service-professional.png';
+import Services7Img from './../../assets/images/service-flexible.png';
 import './style.css';
 
 
@@ -64,11 +70,50 @@ const Home = () => {
             <Row>
                 <Col xs={12} >
                     <Jumbotron className="home-container2">
-                        <h1>Our Service</h1>
-                        <div>
-                            <Image src={CarWashImg} responsive />
-                            <span>Car Wash</span>
-                        </div>
+                        <Row>
+                            <Col xs={12} >
+                                <h1>Our Service</h1>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Row>
+                                <Col xs={0} md={2} />
+                                <Col xs={12} md={4}>
+                                    <Image src={Services1Img} responsive />
+                                </Col>
+                                <Col xs={12} md={4}>
+                                    <Image src={Services2Img} responsive />
+                                </Col>
+                                <Col xs={0} md={2} />
+                            </Row>
+                            <Row>
+                                <Col xs={0} md={2} />
+                                <Col xs={12} md={4}>
+                                    <Image src={Services3Img} responsive />
+                                </Col>
+                                <Col xs={12} md={4}>
+                                    <Image src={Services4Img} responsive />
+                                </Col>
+                                <Col xs={0} md={2} />
+                            </Row>
+                            <Row>
+                                <Col xs={0} md={2} />
+                                <Col xs={12} md={4}>
+                                    <Image src={Services5Img} responsive />
+                                </Col>
+                                <Col xs={12} md={4}>
+                                    <Image src={Services6Img} responsive />
+                                </Col>
+                                <Col xs={0} md={2} />
+                            </Row>
+                            <Row>
+                                <Col xs={0} md={4} />
+                                <Col xs={12} md={4}>
+                                    <Image src={Services7Img} responsive />
+                                </Col>
+                                <Col xs={0} md={4} />
+                            </Row>
+                        </Row>
                     </Jumbotron>
 
                 </Col>
