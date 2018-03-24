@@ -2,25 +2,22 @@
     width: 100%;
     background-color: rgba(15, 147, 254, 1);
     display: flex;
-    align-items: flex-start;
-    margin-bottom: 5px;
-    padding: 0px;
+    align-items: center;
+    flex-direction: column;
+    font: bolder normal normal 64px lulo-clean-w01-one-bold,sans-serif;
+    word-wrap: break-word;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 0;
 }
+.homeCarousel {
+    width: 100%;
+}  
 .homeContaint1 img {
     width: 100%;
+    height: 100%;
 }
-.home-container1-text {
-    text-align: center;
-    font: bolder normal normal 64px lulo-clean-w01-one-bold,sans-serif;
-    position: absolute;
-    color: #DEFF4F;
-    font-weight: bolder;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    word-wrap: break-word;
-}
-.home-container1-text h1 {
+.homeContaint1 h1 {
     margin-bottom: 10px;
 }
 .home-container2 h4{
@@ -29,15 +26,13 @@
     margin-bottom: 5px;
 }
 @media all and (max-width: 900px) {
-    .home-container1-text{
-        width: 90%;
+    .homeContaint1 h1 {
+        font-size: 30px;
+        margin-bottom: 20px;
     }
-
-    .home-container1-text h1 {
-        font-size: 36px;
-    }
-    .home-container1-text h3 {
+    .homeContaint1 h3 {
         font-size: 20px;
+        font-style: italic;
     }
     .home-container2 h4{
         font-size: 24px;
@@ -53,16 +48,13 @@
 }
 
 @media all and (min-width: 900px) {
-    .home-container1-text {
-        width: 40%;
-    }
-
-    .home-container1-text h1 {
+    .homeContaint1 h1 {
         font-size: 64px;
     }
 
-    .home-container1-text h3 {
+    .homeContaint1 h3 {
         font-size: 24px;
+        font-style: italic;
     }
     .home-container2 h4{
         font-size: 36px;

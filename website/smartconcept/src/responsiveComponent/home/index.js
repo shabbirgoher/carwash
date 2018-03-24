@@ -1,9 +1,10 @@
 import React from 'react';
-import { Row, Col, Image, Jumbotron } from 'react-bootstrap';
+import { Row, Col, Image, Jumbotron, Carousel, CarouselItem } from 'react-bootstrap';
 
 import ContactUs from './contact-us';
 
-import CleaningImg from './../../assets/images/cleaning.png';
+import CleaningImg1 from './../../assets/images/cleaning1.png';
+import CleaningImg2 from './../../assets/images/cleaning2.png';
 import Services1Img from './../../assets/images/service-trolley.png';
 import Services2Img from './../../assets/images/service-tyre-polish.png';
 import Services3Img from './../../assets/images/service-rim.png';
@@ -19,11 +20,20 @@ const Home = () => {
         <div>
             <Row>
                 <Col xs={12} className="homeContaint1">
-                    <Image src={CleaningImg} responsive />
-                    <div className="home-container1-text">
+                    <Jumbotron>
                         <h1>GIVE YOUR CAR SOME SHINE</h1>
-                        <h3>WATER-LESS CAR CLEANING PROFESSIONALS SERVING OMAN</h3>
-                    </div>
+                        <h3>Water-Less Car Cleaning Professionals Serving Oman</h3>
+                    </Jumbotron>
+                </Col>
+                <Col xs={12} className="homeContaint1">
+                    <Carousel className="homeCarousel" indicators={false} controls={false} pauseOnHover={false} interval={1000}>
+                        <Carousel.Item>
+                            <Image src={CleaningImg1} responsive />
+                        </Carousel.Item>
+                        <Carousel.Item>
+                            <Image src={CleaningImg2} responsive />
+                        </Carousel.Item>
+                    </Carousel>
                 </Col>
             </Row>
             <Row>
