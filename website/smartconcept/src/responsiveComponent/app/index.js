@@ -7,6 +7,7 @@ import Header from "./../header";
 import Footer from "./../footer";
 import LoginScreen from './../../screens/login';
 import PrivateRoute from './../privateRoute';
+import Appointment from './../../screens/appointment';
 
 import './style.css';
 
@@ -19,7 +20,8 @@ const App = () => (
             <Row style={{ overflowY: 'auto', overflowX: 'hidden' }}>
                 <Route exact path="/" component={Home} />
                 <Route path="/customer" component={LoginScreen} />
-                <PrivateRoute path="/new-appointment" component={Home} />
+                <Route path="/new-appointment" component={Appointment} />
+                {/* <PrivateRoute path="/new-appointment" component={Home} /> */}
             </Row>
             <Row>
                 <Footer />

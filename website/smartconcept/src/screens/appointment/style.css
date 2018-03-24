@@ -1,0 +1,10 @@
+.appointment-container {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.appointment-container div {
+    padding: 20px 0;
+    background-color: #DEFF4F;    
+}
