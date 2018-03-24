@@ -1,8 +1,10 @@
 import React from 'react';
-import { Row, Col, Image, Jumbotron, Carousel, CarouselItem } from 'react-bootstrap';
+import { Row, Col, Image, Jumbotron, Carousel } from 'react-bootstrap';
 
 import ContactUs from './contact-us';
 
+import SloganImg from './../../assets/images/slogan.gif'
+import Slogan2Img from './../../assets/images/slogan2.gif'
 import CleaningImg1 from './../../assets/images/cleaning1.png';
 import CleaningImg2 from './../../assets/images/cleaning2.png';
 import Services1Img from './../../assets/images/service-trolley.png';
@@ -21,8 +23,10 @@ const Home = () => {
             <Row>
                 <Col xs={12} className="homeContaint1">
                     <Jumbotron>
-                        <h1>GIVE YOUR CAR SOME SHINE</h1>
-                        <h3>Water-Less Car Cleaning Professionals Serving Oman</h3>
+                        {/* <h1>GIVE YOUR CAR SOME SHINE</h1> */}
+                        <Image src={SloganImg} responsive />
+                        <Image src={Slogan2Img} responsive />
+                        {/* <h3>Water-Less Car Cleaning Professionals Serving Oman</h3> */}
                     </Jumbotron>
                 </Col>
                 <Col xs={12} className="homeContaint1">
