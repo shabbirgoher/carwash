@@ -1,9 +1,15 @@
 {
   "main.css": "static/css/main.5044ea25.css",
   "main.css.map": "static/css/main.5044ea25.css.map",
-  "main.js": "static/js/main.ef4a6883.js",
-  "main.js.map": "static/js/main.ef4a6883.js.map",
-  "static/media/car-wash.png": "static/media/car-wash.35b7d7b6.png",
+  "main.js": "static/js/main.6ff04991.js",
+  "main.js.map": "static/js/main.6ff04991.js.map",
   "static/media/cleaning.png": "static/media/cleaning.ae5cb2a2.png",
-  "static/media/company-logo.png": "static/media/company-logo.b7759ea3.png"
+  "static/media/company-logo.png": "static/media/company-logo.b7759ea3.png",
+  "static/media/service-body-polish.png": "static/media/service-body-polish.b9a675ac.png",
+  "static/media/service-flexible.png": "static/media/service-flexible.0de54b67.png",
+  "static/media/service-micro-fiber.png": "static/media/service-micro-fiber.411e6ad2.png",
+  "static/media/service-professional.png": "static/media/service-professional.688a02ab.png",
+  "static/media/service-rim.png": "static/media/service-rim.9b28f4b5.png",
+  "static/media/service-trolley.png": "static/media/service-trolley.48bc181d.png",
+  "static/media/service-tyre-polish.png": "static/media/service-tyre-polish.04f1b91a.png"
 }
