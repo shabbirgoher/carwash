@@ -24,7 +24,7 @@ export default class Login extends Component {
         this.setState({ loading: false });
     }
     getUserNameValidationState = () => {
-        return emailReg.test(this.state.emailAddr) ? 'success' : 'error'
+        return emailReg.test(this.state.emailAddr) ? 'success' : 'error';
     }
     getPasswordValidationState = () => {
         return !this.state.password || this.state.password.length < 8 ? 'error' : 'success'

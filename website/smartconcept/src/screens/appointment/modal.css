@@ -1,0 +1,27 @@
+.modal-container {
+    color: rgba(15, 147, 254, 1);
+}
+
+.modal-container div {
+    background-color: #DEFF4F;
+    border-color: rgba(15, 147, 254, 1);
+}
+
+.modal-button button:disabled{
+    background-color: transparent;
+    color: rgba(15, 147, 254, 1);
+}
+
+.modal-button button,
+.modal-button button:focus,
+.modal-button button:active,
+.modal-button button:hover{
+    text-decoration: none;
+    background-color: rgba(15, 147, 254, 1);
+    height: 100%;
+    border-radius: 20px;
+    outline: transparent;
+    color: #DEFF4F;
+    transition: color 0.1s Sine 0s;
+    float: right;
+}

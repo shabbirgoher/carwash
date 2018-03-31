@@ -20,8 +20,8 @@ const App = () => (
             <Row style={{ overflowY: 'auto', overflowX: 'hidden' }}>
                 <Route exact path="/" component={Home} />
                 <Route path="/customer" component={LoginScreen} />
-                <Route path="/new-appointment" component={Appointment} />
-                {/* <PrivateRoute path="/new-appointment" component={Home} /> */}
+                {/* <Route path="/new-appointment" component={Appointment} /> */}
+                <PrivateRoute path="/new-appointment" component={Appointment} />
             </Row>
             <Row>
                 <Footer />
