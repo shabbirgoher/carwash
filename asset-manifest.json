@@ -1,8 +1,8 @@
 {
-  "main.css": "static/css/main.b41c3917.css",
-  "main.css.map": "static/css/main.b41c3917.css.map",
-  "main.js": "static/js/main.b7ef1814.js",
-  "main.js.map": "static/js/main.b7ef1814.js.map",
+  "main.css": "static/css/main.da57ef93.css",
+  "main.css.map": "static/css/main.da57ef93.css.map",
+  "main.js": "static/js/main.36ade670.js",
+  "main.js.map": "static/js/main.36ade670.js.map",
   "static/media/cleaning1.png": "static/media/cleaning1.ae5cb2a2.png",
   "static/media/cleaning2.png": "static/media/cleaning2.f5997b72.png",
   "static/media/company-logo.png": "static/media/company-logo.b7759ea3.png",
@@ -12,5 +12,7 @@
   "static/media/service-professional.png": "static/media/service-professional.688a02ab.png",
   "static/media/service-rim.png": "static/media/service-rim.9b28f4b5.png",
   "static/media/service-trolley.png": "static/media/service-trolley.48bc181d.png",
-  "static/media/service-tyre-polish.png": "static/media/service-tyre-polish.04f1b91a.png"
+  "static/media/service-tyre-polish.png": "static/media/service-tyre-polish.04f1b91a.png",
+  "static/media/slogan.gif": "static/media/slogan.0c8e89e9.gif",
+  "static/media/slogan2.gif": "static/media/slogan2.38ad889d.gif"
 }
