@@ -37,5 +37,13 @@ export const AppointmentService = {
                 }
             })
             .then(handleErrors);
+    },
+    buildings: function () {
+        return fetch(
+            ServiceConfig.apiUrl + '/buildings',
+            {
+                method: 'get'
+            })
+            .then(handleErrors);
     }
 }

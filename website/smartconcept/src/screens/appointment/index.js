@@ -41,10 +41,12 @@ export default class Appointment extends Component {
                 Step = <Car carId={this.state.carId} saveValues={this.saveValues} nextStep={this.nextStep} />;
                 break;
             case 2:
-                Step = <Address />;
+                Step = <Address address={this.state.address} saveValues={this.saveValues}
+                    nextStep={this.nextStep} previousStep={this.previousStep} />;
                 break;
             case 3:
-                Step = <Package />;
+                Step = <Package saveValues={this.saveValues}
+                    nextStep={this.nextStep} previousStep={this.previousStep} />;
                 break;
             case 4:
                 Step = <Days />;

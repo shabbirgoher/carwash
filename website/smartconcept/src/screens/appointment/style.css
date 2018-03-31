@@ -73,3 +73,28 @@ span.appointment-input {
 .appointment-form-group {
     width: 100%;
 }
+
+div.package-table,
+.package-table>div {
+    display: block;
+    padding: 15px;
+}
+
+.package-panel>.package-panel-heading {
+    background-color:rgba(15, 147, 254, 1);
+    width: 100%;
+}
+
+.package-span {
+    color: #FFFFFF;
+}
+
+.package-panel-body {
+    background-color: #DEFF4F;
+}
+
+.package-button {
+    background-color:rgba(15, 147, 254, 1);
+    color: #FFFFFF;
+    transition: color 0.1s Sine 0s;
+}

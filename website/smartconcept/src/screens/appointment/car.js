@@ -13,7 +13,8 @@ export default class Car extends Component {
             carId: props.carId,
             cars: [],
             errorMessage: '',
-            showModal: false
+            showModal: false,
+            loading: false
         }
     }
     componentDidMount() {
@@ -26,7 +27,7 @@ export default class Car extends Component {
     fetchCars() {
         AppointmentService.cars()
             .then((response) => this.setState({ cars: response.cars }))
-            .catch((err) => this.setState({ errorMessage: err.message || 'Unable to save data', loading: false }));
+            .catch((err) => this.setState({ errorMessage: err.message || 'Unable to fetch data', loading: false }));
     }
     handleModalClose = () => {
         this.setState({
@@ -59,7 +60,7 @@ export default class Car extends Component {
                                 validationState={this.getCarBrandValidationState()}>
                                 <InputGroup className="appointment-input">
                                     <FormControl componentClass="select" placeholder="Car brand" className="input-box"
-                                        onChange={event => this.setState({ carId: event.target.value })} >
+                                        onChange={event => this.setState({ carId: event.target.value })} value={this.state.carId}>
                                         <option value="None">select car brand</option>
                                         {this.state.cars.map((car, index) => {
                                             return (<option key={car.carId} value={car.carId}>{car.carBrand}</option>);
