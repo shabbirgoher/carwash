@@ -3,10 +3,8 @@ import { Row, Col, Button, Panel } from 'react-bootstrap';
 
 import InputalidationMessage from './../../components/inputalidationMessage';
 import './style.css';
+import HeadingSpan from './heading-span';
 
-const HeadingSpan = ({ text }) => {
-    return <span className="package-span">{text}</span>
-}
 const PackageButton = ({ children, onClick }) => {
     return <Button className="package-button" onClick={onClick}>{children}</Button>
 }
@@ -14,8 +12,9 @@ export default class Package extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            packageDays: '',
-            packagePeriods: '',
+            packageDays: 0,
+            packageDaysPerWeek: 0,
+            packagePeriods: 0,
             errorMessage: '',
             loading: false
         }
@@ -24,11 +23,15 @@ export default class Package extends Component {
         e.preventDefault()
         this.props.previousStep()
     }
-    next = (packageDays, packagePeriods) => {
+    next = (packageDays, packageDaysPerWeek, packagePeriods, type) => {
         var data = {
-            packageDays: packageDays,
-            packagePeriods: packagePeriods
-        }
+            package: {
+                packageDays: packageDays,
+                packageDaysPerWeek: packageDaysPerWeek,
+                packagePeriods: packagePeriods,
+                type: type
+            }
+        };
         this.props.saveValues(data);
         this.props.nextStep();
     }
@@ -46,16 +49,16 @@ export default class Package extends Component {
                         <Panel.Body className="package-panel-body">
                             <Row className="package-table">
                                 <Col xs={6} md={3}>
-                                    <PackageButton onClick={() => this.next('8', '1')}><p>1 Month</p><p>OMR 16</p></PackageButton>
+                                    <PackageButton onClick={() => this.next(8, 2, 1, 'Basic')}><p>1 Month</p><p>OMR 16</p></PackageButton>
                                 </Col>
                                 <Col xs={6} md={3}>
-                                    <PackageButton onClick={() => this.next('8', '3')}><p>3 Month</p><p>OMR 48</p></PackageButton>
+                                    <PackageButton onClick={() => this.next(8, 2, 3, 'Basic')}><p>3 Month</p><p>OMR 48</p></PackageButton>
                                 </Col>
                                 <Col xs={6} md={3}>
-                                    <PackageButton onClick={() => this.next('8', '6')}><p>6 Month</p><p>OMR 90</p></PackageButton>
+                                    <PackageButton onClick={() => this.next(8, 2, 6, 'Basic')}><p>6 Month</p><p>OMR 90</p></PackageButton>
                                 </Col>
                                 <Col xs={6} md={3}>
-                                    <PackageButton onClick={() => this.next('8', '12')}><p>12 Month</p><p>OMR 180</p></PackageButton>
+                                    <PackageButton onClick={() => this.next(8, 2, 12, 'Basic')}><p>12 Month</p><p>OMR 180</p></PackageButton>
                                 </Col>
                             </Row>
                         </Panel.Body>
@@ -71,16 +74,16 @@ export default class Package extends Component {
                         <Panel.Body className="package-panel-body">
                             <Row className="package-table">
                                 <Col xs={6} md={3}>
-                                    <PackageButton onClick={() => this.next('12', '1')}><p>1 Month</p><p>OMR 19</p></PackageButton>
+                                    <PackageButton onClick={() => this.next(12, 3, 1, 'Advance')}><p>1 Month</p><p>OMR 19</p></PackageButton>
                                 </Col>
                                 <Col xs={6} md={3}>
-                                    <PackageButton onClick={() => this.next('12', '3')}><p>3 Month</p><p>OMR 57</p></PackageButton>
+                                    <PackageButton onClick={() => this.next(12, 3, 3, 'Advance')}><p>3 Month</p><p>OMR 57</p></PackageButton>
                                 </Col>
                                 <Col xs={6} md={3}>
-                                    <PackageButton onClick={() => this.next('12', '6')}><p>6 Month</p><p>OMR 108</p></PackageButton>
+                                    <PackageButton onClick={() => this.next(12, 3, 6, 'Advance')}><p>6 Month</p><p>OMR 108</p></PackageButton>
                                 </Col>
                                 <Col xs={6} md={3}>
-                                    <PackageButton onClick={() => this.next('12', '12')}><p>12 Month</p><p>OMR 208</p></PackageButton>
+                                    <PackageButton onClick={() => this.next(12, 3, 12)}><p>12 Month</p><p>OMR 208</p></PackageButton>
                                 </Col>
                             </Row>
                         </Panel.Body>
@@ -95,16 +98,16 @@ export default class Package extends Component {
                         <Panel.Body className="package-panel-body">
                             <Row className="package-table">
                                 <Col xs={6} md={3}>
-                                    <PackageButton onClick={() => this.next('26', '1')}><p>1 Month</p><p>OMR 37</p></PackageButton>
+                                    <PackageButton onClick={() => this.next(26, 6, 1, 'Daily')}><p>1 Month</p><p>OMR 37</p></PackageButton>
                                 </Col>
                                 <Col xs={6} md={3}>
-                                    <PackageButton onClick={() => this.next('26', '3')}><p>3 Month</p><p>OMR 110</p></PackageButton>
+                                    <PackageButton onClick={() => this.next(26, 6, 3, 'Daily')}><p>3 Month</p><p>OMR 110</p></PackageButton>
                                 </Col>
                                 <Col xs={6} md={3}>
-                                    <PackageButton onClick={() => this.next('26', '6')}><p>6 Month</p><p>OMR 210</p></PackageButton>
+                                    <PackageButton onClick={() => this.next(26, 6, 6, 'Daily')}><p>6 Month</p><p>OMR 210</p></PackageButton>
                                 </Col>
                                 <Col xs={6} md={3}>
-                                    <PackageButton onClick={() => this.next('26', '12')}><p>12 Month</p><p>OMR 404</p></PackageButton>
+                                    <PackageButton onClick={() => this.next(26, 6, 12, 'Daily')}><p>12 Month</p><p>OMR 404</p></PackageButton>
                                 </Col>
                             </Row>
                         </Panel.Body>

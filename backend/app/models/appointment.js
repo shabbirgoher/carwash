@@ -18,27 +18,9 @@ var appointment = new Schema({
         type: String,
         required: true
     },
-    vehicle: {
-        carBrand: {
-            type: String,
-            required: true
-        },
-        carModel: {
-            type: String,
-            required: true
-        },
-        carType: {
-            type: String,
-            required: true
-        },
-        licenceNo: {
-            type: String,
-            required: true
-        },
-        carColor: {
-            type: String,
-            required: true
-        }
+    carId: {
+        type: String,
+        required: true
     },
     address: {
         building: {
@@ -55,8 +37,22 @@ var appointment = new Schema({
         },
     },
     package: {
-        type: String,
-        required: true
+        packageDays: {
+            type: String,
+            required: true
+        },
+        packageDaysPerWeek: {
+            type: String,
+            required: true
+        },
+        packagePeriods: {
+            type: String,
+            required: true
+        },
+        type: {
+            type: String,
+            required: true
+        }
     },
     days: {
         type: Array,

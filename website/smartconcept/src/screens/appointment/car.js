@@ -42,7 +42,7 @@ export default class Car extends Component {
             return;
         }
         var data = {
-            carId: this.state.carId
+            car: this.state.cars.find(car => car.carId === this.state.carId)
         }
         this.props.saveValues(data)
         this.props.nextStep()
@@ -63,7 +63,7 @@ export default class Car extends Component {
                                         onChange={event => this.setState({ carId: event.target.value })} value={this.state.carId}>
                                         <option value="None">select car brand</option>
                                         {this.state.cars.map((car, index) => {
-                                            return (<option key={car.carId} value={car.carId}>{car.carBrand}</option>);
+                                            return (<option key={car.carId} value={car.carId}>{car.licenceNo + " " + car.carBrand}</option>);
                                         })}
                                     </FormControl>
                                 </InputGroup>

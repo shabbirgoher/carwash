@@ -25,6 +25,20 @@ export const AppointmentService = {
             })
             .then(handleErrors);
     },
+    bookAppointment: function (appointmentObj) {
+        const token = AuthService.isAuthenticated();
+        return fetch(
+            ServiceConfig.apiUrl + '/appointment',
+            {
+                method: 'post',
+                headers: {
+                    'content-type': 'application/json',
+                    'Authorization': token
+                },
+                body: JSON.stringify(appointmentObj),
+            })
+            .then(handleErrors);
+    },
     cars: function () {
         const token = AuthService.isAuthenticated();
         return fetch(

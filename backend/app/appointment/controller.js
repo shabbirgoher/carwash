@@ -5,18 +5,9 @@ import Appointment from './../models/appointment';
 import Car from './../models/car';
 import MailSender from './../email/sender';
 
-function calculateEndDate(packageType) {
+function calculateEndDate(pkg) {
     const today = new Date();
-    var monthsToAdd;
-    if (packageType.includes('1Month'))
-        monthsToAdd = 1;
-    if (packageType.includes('3Month'))
-        monthsToAdd = 3;
-    if (packageType.includes('6Month'))
-        monthsToAdd = 6;
-    if (packageType.includes('12Month'))
-        monthsToAdd = 12;
-    return new Date(today.getFullYear(), today.getMonth() + monthsToAdd, today.getDate()).toUTCString();
+    return new Date(today.getFullYear(), today.getMonth() + pkg.packagePeriods, today.getDate()).toUTCString();
 }
 
 exports.bookAppointment = function (req, res, next) {
@@ -88,7 +79,7 @@ exports.cars = function (req, res, next) {
                 return res.status(401).send({ message: "Unauthenticated request...." });
             try {
                 const cars = await Car.find({ userId: user.userId }).exec();
-                return res.status(200).send({ cars: cars.map(car => { return { carId: car.carId, carBrand: car.licenceNo + " " + car.carBrand } }) });
+                return res.status(200).send({ cars: cars });
             }
             catch (err) {
                 var message = "Unable to get cars";

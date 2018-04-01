@@ -8,6 +8,7 @@ import Footer from "./../footer";
 import LoginScreen from './../../screens/login';
 import PrivateRoute from './../privateRoute';
 import Appointment from './../../screens/appointment';
+import Confirmation from './../../screens/appointment/confirmation';
 
 import './style.css';
 
@@ -22,7 +23,8 @@ const App = () => (
                 <Route path="/customer" component={LoginScreen} />
                 <Route path="/customer/sign-in" component={LoginScreen} />
                 {/* <Route path="/new-appointment" component={Appointment} /> */}
-                <PrivateRoute path="/new-appointment" component={Appointment} />
+                <PrivateRoute exact path="/new-appointment" component={Appointment} />
+                <Route path="/new-appointment/confirmation" render={props => <Confirmation {...props} />} />
             </Row>
             <Row>
                 <Footer />

@@ -79,6 +79,10 @@ div.package-table,
     display: block;
     padding: 15px;
 }
+.days-table, .days-table * {
+    display: block;
+    padding: 0px 15px;  
+}
 
 .package-panel>.package-panel-heading {
     background-color:rgba(15, 147, 254, 1);
@@ -89,12 +93,37 @@ div.package-table,
     color: #FFFFFF;
 }
 
-.package-panel-body {
+.package-panel>.package-panel-body {
+    display: block;
     background-color: #DEFF4F;
+    width: 100%;
+}
+
+.package-panel {
+    width: 100%;
+}
+
+.package-panel>.package-panel-body> * {
+   display: block;
 }
 
 .package-button {
     background-color:rgba(15, 147, 254, 1);
     color: #FFFFFF;
     transition: color 0.1s Sine 0s;
+}
+
+@media all and (max-width: 900px) {
+    .confirmation-content {
+        width: 100%;
+    }
+}
+
+@media all and (min-width: 900px) {
+    .confirmation-content {
+        width: 50%;
+    }
+}
+.package-panel-body>.confirmation-table {
+    margin-bottom: 10px;
 }
