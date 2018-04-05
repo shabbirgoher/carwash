@@ -21,7 +21,6 @@ const App = () => (
             <Row style={{ overflowY: 'auto', overflowX: 'hidden' }}>
                 <Route exact path="/" component={Home} />
                 <Route path="/customer" component={LoginScreen} />
-                <Route path="/customer/sign-in" component={LoginScreen} />
                 {/* <Route path="/new-appointment" component={Appointment} /> */}
                 <PrivateRoute exact path="/new-appointment" component={Appointment} />
                 <Route path="/new-appointment/confirmation" render={props => <Confirmation {...props} />} />
