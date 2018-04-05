@@ -12,7 +12,7 @@ function handleErrors(response) {
 
 export const AppointmentService = {
     registerCar: function (carObj) {
-        const token = AuthService.isAuthenticated();
+        const token = AuthService.getToken();
         return fetch(
             ServiceConfig.apiUrl + '/appointment/registerCar',
             {
@@ -26,7 +26,7 @@ export const AppointmentService = {
             .then(handleErrors);
     },
     bookAppointment: function (appointmentObj) {
-        const token = AuthService.isAuthenticated();
+        const token = AuthService.getToken();
         return fetch(
             ServiceConfig.apiUrl + '/appointment',
             {
@@ -40,7 +40,7 @@ export const AppointmentService = {
             .then(handleErrors);
     },
     cars: function () {
-        const token = AuthService.isAuthenticated();
+        const token = AuthService.getToken();
         return fetch(
             ServiceConfig.apiUrl + '/appointment/cars',
             {

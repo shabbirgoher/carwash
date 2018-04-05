@@ -4,13 +4,14 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 import './style.css';
 import Logo from './../../assets/images/company-logo.png';
+import { AuthService } from './../../services/authService';
 const Header = () => {
     return (
         <div>
             <Navbar>
                 <Nav pullRight>
                     <NavItem className="headerTel">
-                            <span>123-456-7890</span>
+                        <span>123-456-7890</span>
                     </NavItem>
                 </Nav>
             </Navbar>
@@ -30,6 +31,15 @@ const Header = () => {
                         <LinkContainer exact to="/new-appointment" >
                             <NavItem>Book Now</NavItem>
                         </LinkContainer>
+                        {
+                            AuthService.isAuthenticated()
+                                ? <LinkContainer exact to="/sign-out" >
+                                    <NavItem>Sign Out</NavItem>
+                                </LinkContainer>
+                                : <LinkContainer exact to="/customer/sign-in" >
+                                    <NavItem>Sign In</NavItem>
+                                </LinkContainer>
+                        }
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

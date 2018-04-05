@@ -9,6 +9,7 @@ import LoginScreen from './../../screens/login';
 import PrivateRoute from './../privateRoute';
 import Appointment from './../../screens/appointment';
 import Confirmation from './../../screens/appointment/confirmation';
+import Logout from './../logOut';
 
 import './style.css';
 
@@ -21,6 +22,7 @@ const App = () => (
             <Row style={{ overflowY: 'auto', overflowX: 'hidden' }}>
                 <Route exact path="/" component={Home} />
                 <Route path="/customer" component={LoginScreen} />
+                <Route path="/sign-out" component={Logout} />
                 {/* <Route path="/new-appointment" component={Appointment} /> */}
                 <PrivateRoute exact path="/new-appointment" component={Appointment} />
                 <Route path="/new-appointment/confirmation" render={props => <Confirmation {...props} />} />

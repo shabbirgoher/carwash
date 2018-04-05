@@ -1,3 +1,5 @@
+import decode from 'jwt-decode';
+
 import { ServiceConfig } from './config'
 
 const JWT_KEY = 'id_token';
@@ -9,6 +11,20 @@ function handleErrors(response) {
             .then(response => { throw response });
     }
     return response.json();
+}
+
+function isExpired(token){
+    try {
+        const decoded = decode(token);
+        if (decoded.exp > Date.now() / 1000) { // Checking if token is expired. N
+            return true;
+        }
+        else
+            return false;
+    }
+    catch (err) {
+        return false;
+    }
 }
 
 export const AuthService = {
@@ -45,6 +61,9 @@ export const AuthService = {
             });
     },
     isAuthenticated: function(){
+        return isExpired(this.getToken());
+    },
+    getToken: function(){
         return localStorage.getItem(JWT_KEY);
     },
     logOut: function(){
