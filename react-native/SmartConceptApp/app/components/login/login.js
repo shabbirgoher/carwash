@@ -4,7 +4,6 @@ import {
     View,
 } from 'react-native';
 
-import SocialLogin from './socialLogin';
 import LocalLogin from './localLogin';
 import { Text } from 'react-native-elements';
 
@@ -17,7 +16,6 @@ export default class Login extends Component {
         return (
             <View style={styles.container}>
                 <LocalLogin onLogin={this.onLogin}/>
-                <SocialLogin onLogin={this.onLogin}/>
             </View>
         );
     }

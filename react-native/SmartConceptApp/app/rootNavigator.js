@@ -1,12 +1,13 @@
 import React from 'react';
 import { StatusBar, Platform, StyleSheet } from 'react-native';
-import { StackNavigator } from 'react-navigation';
+import { StackNavigator, DrawerNavigator } from 'react-navigation';
 
 import Home from './components/home';
 import Confirmation from './screens/confirmation';
 import LoginScreen from './screens/loginScreen';
 import SocialSignUp from './components/login/socialSignUp';
 import Logout from './components/login/logout';
+import MenuButton from './useFullComponents/menuButton';
 
 const headerStyle = {
   //marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
@@ -25,8 +26,8 @@ export const SignedOut = StackNavigator({
     navigationOptions: {
       headerTitle: "Sign In",
       headerStyle,
-      headerTitleStyle:{
-        alignSelf:'center',
+      headerTitleStyle: {
+        alignSelf: 'center',
         textAlign: 'center',
         width: '100%'
       }
@@ -38,7 +39,7 @@ export const SignedOut = StackNavigator({
       headerTitle: "Sign Up",
       headerStyle,
       headerTitleStyle: {
-        alignSelf:'center',
+        alignSelf: 'center',
         textAlign: 'center',
         width: '100%'
       }
@@ -46,7 +47,7 @@ export const SignedOut = StackNavigator({
   }
 });
 
-export const SignedIn = StackNavigator({
+export const HomeNavigator = StackNavigator({
   Home: {
     screen: Home
   },
@@ -54,8 +55,21 @@ export const SignedIn = StackNavigator({
     screen: Confirmation
   }
 },
-{
-  initialRouteName: 'Home'
+  {
+    initialRouteName: 'Home',
+    navigationOptions: ({ navigation }) => ({
+      headerLeft: <MenuButton navigate={navigation.navigate} />,
+    })
+  }
+);
+
+export const SignedIn = DrawerNavigator({
+  Book: {
+    screen: HomeNavigator
+  },
+  Logout: {
+    screen: Logout
+  }
 });
 
 export const createRootNavigator = (signedIn = false) => {
